@@ -12,7 +12,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   # We need to validate user name manually in the model because it isn't
-  # a default field for Devise
+  # a default field on Devise
   test "user name should be present" do
     @user.name = " "
     assert_not @user.valid?
@@ -39,17 +39,46 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "user should send friend requests" do
-    @user.invited_users << @receiver
-    assert_equal @user.invited_users.size, 1
+    @user.save
+    @receiver.save
+    @user.requests_to << @receiver
+    assert_equal @user.requests.size, 1
   end
 
   test "user should receive friend requests" do
-    @receiver.user_invitations << @user
-    assert_equal @receiver.user_invitations.size, 1
+    @user.save
+    @receiver.save
+    @user.requests_to << @receiver
+    assert_equal @receiver.invitations.size, 1
   end
 
   test "user can accept a friend request" do
-    @receiver.user_invitations << @user
-    
+    @user.save
+    @receiver.save
+    @user.requests_to << @receiver
+    user_friend_request = @receiver.invitations.find_by(sender_id: @user.id)
+    user_friend_request.accepted = true
+    assert user_friend_request.accepted?
   end
+
+  test "a friendship should be destroyed when the requester is deleted" do
+    requester = users(:user1)
+    invited = users(:user2)
+    requester.requests_to << invited
+
+    assert_difference 'Friendship.count', -1 do
+      requester.destroy
+    end
+  end
+
+  test "a friendship should be destroyed when the invited user is deleted" do
+    requester = users(:user1)
+    invited = users(:user2)
+    requester.requests_to << invited
+    
+    assert_difference 'Friendship.count', -1 do
+      invited.destroy
+    end
+  end
+
 end
