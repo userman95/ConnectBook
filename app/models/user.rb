@@ -18,7 +18,7 @@ class User < ApplicationRecord
   # Requests made to other friends
   has_many :requests_to, through: :requests, source: :receiver
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_many :likes
   has_many :comments
 
