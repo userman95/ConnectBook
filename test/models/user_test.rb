@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  
+
   def setup
-    @user = User.new(name: 'Efrain', email: 'e@g.c', password: '123456')
-    @receiver = User.new(name: 'Orestis', email: 'o@g.c', password: '123456')
+    @user = User.create(name: 'Efrain', email: 'e@g.c', password: '123456')
+    @receiver = User.create(name: 'Orestis', email: 'o@g.c', password: '123456')
   end
 
   test "user should be valid" do
@@ -50,6 +50,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "user can accept a friend request" do
     @receiver.user_invitations << @user
-    
+    @user.senders.find_by(receiver_id: @receiver.id).update(accepted: true)
+    assert @user.senders.find_by(receiver_id: @receiver.id).accepted
   end
 end
