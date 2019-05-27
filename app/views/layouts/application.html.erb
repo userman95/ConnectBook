@@ -18,6 +18,8 @@
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
 
+
+
     <p class="navbar-text pull-right">
       <% if user_signed_in? %>
         Logged in as <strong><%= current_user.email %></strong>.
@@ -28,7 +30,7 @@
         <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
       <% end %>
     </p>
-    
+
     <%= yield %>
   </body>
 </html>

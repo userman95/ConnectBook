@@ -37,6 +37,7 @@ gem 'carrierwave',             '1.2.2'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
+gem 'omniauth-facebook'
 
 #adding Bootstrap gem
 gem 'bootstrap-sass', '3.4.1'
