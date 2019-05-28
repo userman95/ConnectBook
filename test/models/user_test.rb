@@ -42,22 +42,23 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     @receiver.save
     @user.requests_to << @receiver
-    assert_equal @user.requests.size, 1
+    assert_equal 1, @user.sent_requests.size
   end
 
   test "user should receive friend requests" do
     @user.save
     @receiver.save
     @user.requests_to << @receiver
-    assert_equal @receiver.invitations.size, 1
+    assert_equal 1, @receiver.received_requests.size
   end
 
   test "user can accept a friend request" do
     @user.save
     @receiver.save
     @user.requests_to << @receiver
-    user_friend_request = @receiver.invitations.find_by(sender_id: @user.id)
+    user_friend_request = @receiver.received_requests.find_by(sender_id: @user.id)
     user_friend_request.accepted = true
+    user_friend_request.save
     assert user_friend_request.accepted?
   end
 
@@ -79,6 +80,48 @@ class UserTest < ActiveSupport::TestCase
     assert_difference 'Friendship.count', -1 do
       invited.destroy
     end
+  end
+
+  test "a user should get all his pending requests" do
+    requester = users(:user1)
+    users = User.where("name LIKE '%friend%'").take(20)
+    users.each do |user|
+      requester.requests_to << user
+    end
+    assert_equal requester.sent_requests.count, 20
+  end
+
+  test "a user should get all his accepted requests" do
+    requester = users(:user1)
+    users = User.where("name LIKE '%friend%'").take(20)
+    users.each do |user|
+      requester.requests_to << user
+    end
+    friend1 = users(:someone1)
+    friend1_invitation = friend1.received_requests.find_by(sender_id: requester.id)
+    friend1_invitation.accepted = true
+    friend1_invitation.save
+    assert_equal 1, requester.sent_requests.where(accepted: true).count
+  end
+
+  test "a user should get all the requests it already accepted" do
+    invited = users(:user1)
+    requester1 = users(:someone1)
+    requester2 = users(:someone2)
+    requester3 = users(:someone3)
+    requester1.requests_to << invited
+    requester2.requests_to << invited
+    requester3.requests_to << invited
+    
+    invitation = invited.received_requests.find_by(sender_id: requester1.id)
+    invitation.accepted = true
+    invitation.save
+    invitation = invited.received_requests.find_by(sender_id: requester2.id)
+    invitation.accepted = true
+    invitation.save
+
+    assert_equal 2, invited.received_requests.where(accepted: true).count
+    assert_equal 1, invited.received_requests.where(accepted: false).count
   end
 
 end

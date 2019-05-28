@@ -9,3 +9,10 @@ user2:
   name: Bar
   email: b@g.c
   encrypted_password: 123456
+
+<% 20.times do |i| %>
+someone<%= i %>:
+  name: <%= "friend #{i}" %>
+  email: <%= "friend#{i}@g.c" %>
+  encrypted_password: 123456
+<% end %>
