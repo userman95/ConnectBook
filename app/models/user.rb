@@ -20,8 +20,8 @@ class User < ApplicationRecord
   has_many :requests_to, through: :requests, source: :receiver
 
   has_many :posts, dependent: :destroy
-  has_many :likes, :as => :likeable
-  has_many :comments, :as => :commentable
+  has_many :likes
+  has_many :comments
 
   validates :name, presence: true
 
