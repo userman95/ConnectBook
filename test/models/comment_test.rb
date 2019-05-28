@@ -3,8 +3,9 @@ require 'test_helper'
 class CommentTest < ActiveSupport::TestCase
   def setup
     @user = User.create(name: 'Orestis', email: 'o@g.c', password: '123456')
-    @post = @user.posts.create(content: "tests for post model")
-    @comment = @post.comments.create(content: "comment for @user post")
+    @another_user = User.create(name: 'Efrain', email: 'e@g.c', password: '123456')
+    @post = @another_user.posts.create(content: "tests for post model")
+    @comment = @user.comments.create(content: "comment for @user post", post_id: @post.id)
   end
 
   test "a comment should be valid" do

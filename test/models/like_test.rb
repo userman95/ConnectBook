@@ -4,8 +4,9 @@ class LikeTest < ActiveSupport::TestCase
 
   def setup
     @user = User.create(name: 'Orestis', email: 'o@g.c', password: '123456')
+    @another_user = User.create(name: 'Efrain', email: 'e@g.c', password: '123456')
     @post = @user.posts.create(content: "tests for post model")
-    @like = @post.likes.create
+    @like = @user.likes.create(post_id: @post.id)
   end
 
   test "a like should be valid" do
