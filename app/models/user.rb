@@ -5,19 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable , :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :sent_requests,
-           class_name: "Friendship",
-           foreign_key: :sender_id,
-           dependent: :destroy
-  has_many :received_requests,
-           class_name: "Friendship",
-           foreign_key: :receiver_id,
-           dependent: :destroy
+  has_many :friend_requests, dependent: :destroy
+  has_many :pending_friends, through: :friend_requests, source: :friend
 
-  # Requests made to other friends
-  has_many :requests_to, through: :sent_requests, source: :receiver
-  # Invitations pending to accept
-  has_many :invitations_from, through: :received_requests, source: :sender
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
 
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
