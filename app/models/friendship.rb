@@ -1,4 +1,13 @@
 class Friendship < ApplicationRecord
-  belongs_to :sender, class_name: "User"
-  belongs_to :receiver, class_name: "User"
+  after_create :create_inverse_relationship
+  belongs_to :user
+  belongs_to :friend, class_name: 'User'
+
+  validates :friend, presence: true, uniqueness: { scope: :user }
+
+  private
+
+  def create_inverse_relationship
+    friend.friendships.create(friend: user)
+  end
 end
