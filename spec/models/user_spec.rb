@@ -31,7 +31,6 @@ RSpec.describe User, type: :model do
 
     let(:requester) { User.new(name: 'Efrain', email: 'e@g.c', password: '123456') }
     let(:invited) { User.new(name: 'Orestis', email: 'o@g.c', password: '123456') }
-    let(:invitation) {  }
 
     it 'user can send a friend request to another' do
 
