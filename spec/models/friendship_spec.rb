@@ -5,8 +5,6 @@ RSpec.describe Friendship, type: :model do
   before do
     @user = User.create(name: "Orestis",email: "o@mail.com",password: "123456")
     @friend = User.create(name: 'Efrain',email: "e@mail.com",password: "123456")
-    @post = @user.posts.create(content: "tests for post model")
-    @comment = @user.comments.create(content: "comment for @user post", post_id: @post.id)
   end
 
   context "associations tests" do
@@ -20,6 +18,13 @@ RSpec.describe Friendship, type: :model do
       @user.friends << @friend
       expect(@user.friends).to_not be_empty
       @user.delete_friend(@friend)
+      expect(@user.friends).to be_empty
+      expect(@friend.friends).to be_empty
+    end
+
+    it "a friendship should be destroyed when the requester is deleted" do
+      @user.friends << @friend
+      @user.destroy
       expect(@user.friends).to be_empty
       expect(@friend.friends).to be_empty
     end

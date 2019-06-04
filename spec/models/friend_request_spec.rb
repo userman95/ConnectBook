@@ -10,15 +10,6 @@ RSpec.describe FriendRequest, type: :model do
   end
 
   context "associations tests" do
-    it "a user can accept a friend request" do
-      @friend_request.accept
-      expect(@user.friends).to_not be_empty
-    end
-
-    it "a user can decline a friend request" do
-      @friend_request.decline
-      expect { @friend_request.reload }.to raise_error ActiveRecord::RecordNotFound
-    end
 
     it "a friend request should be destroyed after accepted" do
       @friend_request.accept
