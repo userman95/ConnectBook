@@ -30,13 +30,17 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.name
-      user.image = auth.info.avatar
+      user.image = URI.parse(auth.info.image)
     end
   end
 
   def delete_friend(friend)
     self.friends.destroy(friend) #current_user is deleting friend
     friend.friends.destroy(self) #mutual friend delete
+  end
+
+  def first_name
+    self.name.split.first
   end
 
 end

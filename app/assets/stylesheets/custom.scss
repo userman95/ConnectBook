@@ -1,9 +1,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body{
+  box-sizing: border-box;
+}
 .index-usernames{
   margin-left: 25%;
 }
+
 .index-buttons{
   margin-left: 25%;
   background: #0093ffa6;
@@ -12,6 +16,65 @@
   margin-bottom: 6px;
   color: white;
 }
+
 .position-of-pages{
   margin-top: 50px;
+}
+
+.head {
+  background-color: #4267b2;
+}
+
+.navbar-link{
+  color: black;
+}
+.navbar-text{
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+#search{
+  width: 100%;
+}
+
+.notifications{
+  margin-left: 6px;
+}
+.friend_request{
+  background-image: image-url("facebook-pack.png");
+  background-size: 109px;
+  background-position: 32px;
+  height: 28px;
+  width: 28px;
+}
+.message{
+  background-image: image-url("facebook-pack.png");
+  background-size: 73px;
+  background-position: -47px -43px;
+  height: 28px;
+  width: 28px;
+}
+.notification{
+  background-image: image-url("facebook-pack.png");
+  background-size: 72px;
+  background-position: 72px;
+  height: 28px;
+  width: 28px;
+}
+
+.profile-options{
+  margin-top: 4px;
+}
+.logo{
+  right: -8px;
+  position: absolute;
+}
+#Logout{
+  display: inline-block;
+  margin-top: 4px;
+}
+.navbar{
+  min-height: 42px;
 }

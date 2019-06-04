@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def send_request
     p params
     @user = User.find_by(id: params[:id])
-    current_user.requests_to << @user
+    @friend_request = @user.friend_requests.create(friend: current_user)
     redirect_to users_index_path
   end
 
@@ -17,4 +17,5 @@ class UsersController < ApplicationController
   def accept_request
 
   end
+
 end

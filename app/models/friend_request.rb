@@ -12,7 +12,7 @@ class FriendRequest < ApplicationRecord
 
   validate :existence_of_friendship
   validate :uniqueness_of_friend_request
-
+  validate :exclude_self_friend_request
 
   def accept
     user.friends << friend
@@ -31,6 +31,10 @@ class FriendRequest < ApplicationRecord
 
   def uniqueness_of_friend_request
     errors.add(:friend,'you have already sent a friend request to that user') if friend.pending_friends.include?(user)
+  end
+
+  def exclude_self_friend_request
+    errors.add(:friend, "can't be equal to user") if user == friend
   end
 
 end
