@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_29_165505) do
+ActiveRecord::Schema.define(version: 2019_05_31_182054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,12 +39,7 @@ ActiveRecord::Schema.define(version: 2019_05_29_165505) do
     t.bigint "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "sender_id"
-    t.bigint "receiver_id"
     t.index ["friend_id"], name: "index_friendships_on_friend_id"
-    t.index ["receiver_id"], name: "index_friendships_on_receiver_id"
-    t.index ["sender_id", "receiver_id"], name: "index_friendships_on_sender_id_and_receiver_id", unique: true
-    t.index ["sender_id"], name: "index_friendships_on_sender_id"
     t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
@@ -91,8 +86,6 @@ ActiveRecord::Schema.define(version: 2019_05_29_165505) do
   add_foreign_key "comments", "users"
   add_foreign_key "friend_requests", "users"
   add_foreign_key "friendships", "users"
-  add_foreign_key "friendships", "users", column: "receiver_id"
-  add_foreign_key "friendships", "users", column: "sender_id"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"

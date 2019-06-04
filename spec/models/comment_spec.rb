@@ -2,34 +2,42 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
 
-  it "a comment should be valid" do
-    @user = create(:user)
-    @another_user = create(:user,name: 'Efrain', email: 'e@g.c')
-    @post = @another_user.posts.create(content: "tests for post model")
+  before do
+    @user = User.create(name: "Orestis",email: "o@mail.com",password: "123456")
+    @friend = User.create(name: 'Efrain',email: "e@mail.com",password: "123456")
+    @post = @user.posts.create(content: "tests for post model")
     @comment = @user.comments.create(content: "comment for @user post", post_id: @post.id)
-    assert @comment.valid?
   end
 
-  it "a comment should belong to a post" do
-    assert_not @comment.post.nil?
+  context "associations tests" do
+    it "a comment should belong to a post" do
+      expect(@comment.post.nil?).to be false
+    end
+
+    it "a comment should belong to a user" do
+      expect(@comment.post.user).to_not be_nil
+    end
+
+    it "a comment should be deleted when it's user is destroyed" do
+      @user.destroy
+      expect { @comment.reload }.to raise_error ActiveRecord::RecordNotFound
+    end
+
+    it "a comment should be deleted when it's post is destroyed" do
+      @post.destroy
+      expect { @comment.reload }.to raise_error ActiveRecord::RecordNotFound
+    end
   end
 
-  it "a comment should belong to a user" do
-    assert_not @comment.post.user.nil?
+  context "validations tests" do
+    it "a comment should be valid" do
+      expect(@comment).to be_valid
+    end
+
+    it "comment content shouldn't be longer than 140 characters" do
+      @comment.content = 'a' * 141
+      expect(@comment).to_not be_valid
+    end
   end
 
-  it "a comment should be deleted when it's user is destroyed" do
-    @user.destroy
-    assert_not @post.likes.exists?(@comment.id)
-  end
-
-  it "a comment should be deleted when it's post is destroyed" do
-    @post.destroy
-    assert_not @post.likes.exists?(@comment.id)
-  end
-
-  it "comment content shouldn't be longer than 140 characters" do
-    @comment.content = 'a' * 141
-    assert_not @comment.valid?
-  end
 end
