@@ -5,8 +5,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable , :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :friend_requests, dependent: :destroy
-  has_many :pending_friends, through: :friend_requests, source: :friend
+  has_many :friend_requests, class_name: "FriendRequest",
+    foreign_key: :user_id, dependent: :destroy
+
+  has_many :received_requests, class_name: "FriendRequest",
+    foreign_key: :friend_id, dependent: :destroy
+  
+  has_many :pending_friends, through: :friend_requests,
+    source: :friend, dependent: :destroy
+
+  has_many :pending_acceptances, through: :received_requests,
+    source: :user, dependent: :destroy
 
   has_many :active_friendships,class_name: "Friendship",
   foreign_key: :user_id, dependent: :destroy
@@ -28,6 +37,10 @@ class User < ApplicationRecord
 
   def friends
     added_friends + added_by_friends
+  end
+
+  def requests
+    pending_friends + pending_acceptances
   end
 
   def self.new_with_session(params, session)
