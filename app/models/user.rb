@@ -8,14 +8,27 @@ class User < ApplicationRecord
   has_many :friend_requests, dependent: :destroy
   has_many :pending_friends, through: :friend_requests, source: :friend
 
-  has_many :friendships, dependent: :destroy
-  has_many :friends, through: :friendships, dependent: :destroy
+  has_many :active_friendships,class_name: "Friendship",
+  foreign_key: :user_id, dependent: :destroy
+
+  has_many :passive_friendships,class_name: "Friendship",
+  foreign_key: :friend_id, dependent: :destroy
+
+  has_many :added_friends, through: :active_friendships,
+  dependent: :destroy,source: :friend
+
+  has_many :added_by_friends, through: :passive_friendships,
+  dependent: :destroy,source: :user
 
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
   validates :name, presence: true
+
+  def friends
+    added_friends + added_by_friends
+  end
 
   def self.new_with_session(params, session)
     super.tap do |user|
