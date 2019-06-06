@@ -23,23 +23,26 @@ RSpec.describe User, type: :model do
       user.save
       friend.save
       friend.friend_requests.create(friend: user)
-      expect(friend.requests.first).to eq(user)
-      expect(user.requests.first).to eq(friend)
+      expect(friend.users_in_request.first).to eq(user)
+      expect(user.users_in_request.first).to eq(friend)
     end
 
-    it "a user can accept a friend request" do
-      user.save
-      friend.save
-      user.friend_requests.create(friend: friend)
-      # I'm not sure here if I need to use active_friendships or
-      # passive_frienship
-      friend.active_friendships.create(friend: user)
-      expect(friend.friends.first).to eq(user)
-    end
+    # it "a user can accept a friend request" do
+    #   user.save
+    #   friend.save
+    #   user.friend_requests.create(friend: friend)
+    #   # I'm not sure here if I need to use active_friendships or
+    #   # passive_frienship
+    #   friend.active_friendships.create(friend: user)
+    #   expect(friend.friends.first).to eq(user)
+    # end
 
     # it "a user can decline a friend request" do
-    #   @friend_request.decline
-    #   expect { @friend_request.reload }.to raise_error ActiveRecord::RecordNotFound
+    #   user.save
+    #   friend.save
+    #   user.friend_requests.create(friend: friend)
+    #   friend.requests.first.destroy
+    #   expect (user.reload.requests.first).to be_nil
     # end
 
     # it "a user can check its pending requests" do
