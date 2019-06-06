@@ -15,7 +15,7 @@ class FriendRequest < ApplicationRecord
   validate :exclude_self_friend_request
 
   def accept
-    user.friends << friend
+    user.added_by_friends << friend
     destroy
   end
 
@@ -30,7 +30,7 @@ class FriendRequest < ApplicationRecord
   end
 
   def uniqueness_of_friend_request
-    errors.add(:friend,'you have already sent a friend request to that user') if friend.pending_friends.include?(user)
+    errors.add(:friend,'you have already sent a friend request to that user') if friend.friend_requests.include?(user)
   end
 
   def exclude_self_friend_request

@@ -2,38 +2,31 @@ require 'rails_helper'
 
 RSpec.describe FriendRequest, type: :model do
 
-  before do
-    @user = User.create(name: "Orestis",email: "o@mail.com",password: "123456")
-    @friend = User.create(name: 'Efrain',email: "e@mail.com",password: "123456")
-    @post = @user.posts.create(content: "tests for post model")
-    @friend_request = @user.friend_requests.create(friend: @friend)
-  end
+  let(:user){ build(:user) }
+  let(:friend){ build(:user, name: "Orestis", email: "o@mail.c", password: "123456") }
+  let(:friend_request){ build(:friend_request)}
 
   context "associations tests" do
-
     it "a friend request should be destroyed after accepted" do
-      @friend_request.accept
-      expect { @friend_request.reload }.to raise_error ActiveRecord::RecordNotFound
+      friend_request.accept
+      expect { friend_request.reload }.to raise_error ActiveRecord::RecordNotFound
     end
-
   end
 
   context "validations tests" do
-    it "Inverse friendship should be valid after accept" do
-      @friend_request.accept
-      expect(@user.friends).to_not be_empty
-      expect(@friend.friends).to_not be_empty
-    end
+    let(:new_friend_request) { build(:friend_request) }
 
     it "Shouldn't be able to send a second friend request to the same user" do
-      @friend_request = @user.friend_requests.create(friend: @friend)
-      expect(@friend_request).to_not be_valid
+      user.save
+      friend.save
+      friend_request.save
+      expect(new_friend_request).to_not be_valid
     end
 
     it "Shouldn't be able to send a friend request if users are friends" do
-      @friend_request.accept
-      @friend_request = @user.friend_requests.create(friend: @friend)
-      expect(@friend_request).to_not be_valid
+      user.save
+      user.added_friends << friend
+      expect(new_friend_request.save).to_not be_valid
     end
   end
 
