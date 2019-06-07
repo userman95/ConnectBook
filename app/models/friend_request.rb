@@ -25,16 +25,18 @@ class FriendRequest < ApplicationRecord
 
   private
 
-  def existence_of_friendship
-    errors.add(:friend,'friends already added') if user.friends.include?(friend)
-  end
+    def existence_of_friendship
+      errors.add(:friendship, "already exists") if user.friends.include?(friend)
+    end
 
-  def uniqueness_of_friend_request
-    errors.add(:friend,'you have already sent a friend request to that user') if friend.friend_requests.include?(user)
-  end
+    def uniqueness_of_friend_request
+      if user.users_in_request.include?(friend) || friend.users_in_request.include?(user)
+        errors.add(:friend_request, "already exists")
+      end
+    end
 
-  def exclude_self_friend_request
-    errors.add(:friend, "can't be equal to user") if user == friend
-  end
+    def exclude_self_friend_request
+      errors.add(:friend_request, "to itself not allowed") if user == friend
+    end
 
 end

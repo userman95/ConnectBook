@@ -24,6 +24,7 @@ RSpec.describe User, type: :model do
       user.save
       friend.save
       friend.friend_requests.create(friend: user)
+      user.reload
       expect(friend.users_in_request.first).to eq(user)
       expect(user.users_in_request.first).to eq(friend)
     end

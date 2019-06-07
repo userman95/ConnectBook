@@ -64,11 +64,6 @@ class User < ApplicationRecord
     end
   end
 
-  def delete_friend(friend)
-    self.friends.destroy(friend) #current_user is deleting friend
-    friend.friends.destroy(self) #mutual friend delete
-  end
-
   def first_name
     self.name.split.first
   end
