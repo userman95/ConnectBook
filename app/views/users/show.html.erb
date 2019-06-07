@@ -1,0 +1,14 @@
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-3">
+    <div class="text-left">
+      <section>
+        <%= render 'shared/post_form', locals: {post: @post} %>
+      </section>
+      <section>
+        <%= render partial: 'shared/all_posts', collection: @posts, as: :post%>
+      </section>
+    </div>
+  </div>
+  <div class="col-md-6">
+  </div>

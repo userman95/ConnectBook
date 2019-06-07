@@ -15,7 +15,7 @@
             <p>
               <% if user_signed_in? %>
                 <%= link_to current_user.first_name, edit_user_registration_path, :class => 'navbar-link' %> |
-                <%= link_to "Start page", users_index_path, :class => 'navbar-link'  %> |
+                <%= link_to "Start page", posts_index_path, :class => 'navbar-link'  %> |
               <% else %>
                 <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
                 <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>

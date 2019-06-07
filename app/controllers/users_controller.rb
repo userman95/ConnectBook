@@ -14,8 +14,9 @@ class UsersController < ApplicationController
     @invitations = current_user.invitations_from
   end
 
-  def accept_request
-
+  def show
+    @user = User.find_by(id: params[:id])
+    @posts = @user.posts
   end
 
 end
