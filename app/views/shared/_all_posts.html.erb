@@ -1,0 +1,13 @@
+<div class="post-section">
+  <div class="post-origin">
+    <%= link_to post.user.name,user_path(post.user) %>
+  </div>
+  <p><%= post.content %></p>
+  <div class="post-attention text-right">
+    <span><%= post.likes.count%></span>
+    <span><%= post.comments.count %></span>
+  </div>
+  <div class="post-reactions">
+    <span><%= button_to "Like",likes_path(id: post.id), class: "index-buttons" , data: { id: post.id } %> </span>
+  </div>
+</div>
