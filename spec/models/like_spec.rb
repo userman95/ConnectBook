@@ -2,36 +2,35 @@ require 'rails_helper'
 
 RSpec.describe Like, type: :model do
 
-  before do
-    @user = User.create(name: "Orestis",email: "o@mail.com",password: "123456")
-    @friend = User.create(name: 'Efrain',email: "e@mail.com",password: "123456")
-    @post = @user.posts.create(content: "tests for post model")
-    @like = @user.likes.create(post_id: @post.id)
-  end
+  let(:user){ create(:user_with_posts, name: "Orestis") }
+  let(:friend){ create(:user, name: "Efrain") }
+  let(:like){ build(:like, user: user, post: user.posts.last) }
 
-  context "associations tests" do
-    it "a like should belong to a post" do
-      expect(@like.post.nil?).to be false
-    end
+  context "validation tests" do
 
-    it "a like should belong to a user" do
-      expect(@like.post.user).to_not be_nil
-    end
-
-    it "a like should be deleted when it's user is destroyed" do
-      @user.destroy
-      expect { @like.reload }.to raise_error ActiveRecord::RecordNotFound
-    end
-
-    it "a like should be deleted when it's post is destroyed" do
-      @post.destroy
-      expect { @like.reload }.to raise_error ActiveRecord::RecordNotFound
+    it "like should be valid" do
+      expect(like).to be_valid
     end
   end
 
-  context "validations tests" do
-    it "a like should be valid" do
-      expect(@like).to be_valid
+  context "association tests" do
+    
+    it "user is present" do
+      expect(like.user).to be_present
+    end
+
+    it "post is present" do
+      expect(like.post).to be_present
+    end
+
+    it "like should be deleted when its user is destroyed" do
+      user.destroy
+      expect(Like.find_by(id: like.id)).to be_nil
+    end
+
+    it "like should be deleted when its post is destroyed" do
+      user.posts.first.destroy
+      expect(Like.find_by(id: like.id)).to be_nil
     end
   end
 
