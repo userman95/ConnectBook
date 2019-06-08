@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Like, type: :model do
 
   let(:user){ create(:user_with_posts, name: "Orestis") }
-  let(:friend){ create(:user, name: "Efrain") }
-  let(:like){ build(:like, user: user, post: user.posts.last) }
+  let(:friend){ create(:user_with_posts, name: "Efrain") }
+  let(:like){ build(:like, user: friend, post: user.posts.last) }
 
   context "validation tests" do
 
