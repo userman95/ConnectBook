@@ -6,10 +6,10 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :friend_requests, class_name: "FriendRequest",
-    foreign_key: :user_id, dependent: :destroy
+    foreign_key: :user_id
 
   has_many :received_requests, class_name: "FriendRequest",
-    foreign_key: :friend_id, dependent: :destroy
+    foreign_key: :friend_id
   
   has_many :pending_friends, through: :friend_requests,
     source: :friend, dependent: :destroy
@@ -40,6 +40,10 @@ class User < ApplicationRecord
   end
 
   def requests
+    friend_requests + received_requests
+  end
+
+  def users_in_request
     pending_friends + pending_acceptances
   end
 
@@ -58,11 +62,6 @@ class User < ApplicationRecord
       user.name = auth.info.name
       user.image = URI.parse(auth.info.image)
     end
-  end
-
-  def delete_friend(friend)
-    self.friends.destroy(friend) #current_user is deleting friend
-    friend.friends.destroy(self) #mutual friend delete
   end
 
   def first_name

@@ -2,38 +2,53 @@ require 'rails_helper'
 
 RSpec.describe Friendship, type: :model do
 
-  before do
-    @user = User.create(name: "Orestis",email: "o@mail.com",password: "123456")
-    @friend = User.create(name: 'Efrain',email: "e@mail.com",password: "123456")
+  let(:user){ create(:user, name: "Orestis",email: "o@mail.com") }
+  let(:friend){ create(:user, name: "Efrain",email: "e@mail.com") }
+  let(:friendship){ build(:friendship, user: user, friend: friend) }
+
+  context "validation tests" do
+    let(:inverse_friendship){ build(:friendship, user: friend, friend: user) }
+    let(:itself_friendship){ build(:friendship, user: friend, friend: friend) }
+
+    it "user should be present" do
+      expect(friendship.user).to be_present
+    end
+
+    it "friend should be present" do
+      expect(friendship.friend).to be_present
+    end
+    
+    it "inverse friendship shouldn't be valid" do
+      friendship.save
+      user.reload
+      friend.reload
+      expect(inverse_friendship).to_not be_valid
+    end
+
+    it "user shoudn't be able to create a friendship with itself" do
+      expect(itself_friendship).to_not be_valid
+    end
   end
 
-  context "associations tests" do
+  context "association tests" do
     it "a user can be friends with another user" do
-      @user.friends << @friend
-      expect(@friend.friends).to_not be_empty
-      expect(@user.friends).to_not be_empty
+      friendship.save
+      user.reload
+      friend.reload
+      expect(friend.friends.first).to eq(user)
+      expect(user.friends.first).to eq(friend)
     end
 
-    it "a friendship should be destroyed when a user deletes another" do
-      @user.friends << @friend
-      expect(@user.friends).to_not be_empty
-      @user.delete_friend(@friend)
-      expect(@user.friends).to be_empty
-      expect(@friend.friends).to be_empty
+    it "a friendship should be destroyed when requester is deleted" do
+      friendship
+      user.destroy
+      expect(Friendship.find_by(id: friendship.id)).to be_nil
     end
 
-    it "a friendship should be destroyed when the requester is deleted" do
-      @user.friends << @friend
-      @user.destroy
-      expect(@user.friends).to be_empty
-      expect(@friend.friends).to be_empty
-    end
-  end
-
-  context "validations tests" do
-    it "Inverse friendship should be valid" do
-      @user.friends << @friend
-      expect(@friend.friends.first).to be_valid
+    it "a friendship should be destroyed when receiver is deleted" do
+      friendship
+      friend.destroy
+      expect(Friendship.find_by(id: friendship.id)).to be_nil
     end
   end
 

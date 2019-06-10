@@ -2,17 +2,18 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  let(:user){ build(:user) }
-  let(:friend){ build(:user, name: "Orestis", email: "o@mail.c", password: "123456") }
+  let(:user){ build(:user, name: "Efrain", email: "e@mail.c") }
+  let(:friend){ build(:user, name: "Orestis", email: "o@mail.c") }
+  let(:requested_users){ create_list(:user, 10) }
 
   context 'validation tests' do
 
     it 'name should be present' do
-      expect( user.name).not_to be_empty
+      expect(user.name).not_to be_empty
     end
 
     it 'user should be valid' do
-      expect( user.valid?).to eq(true)
+      expect(user.valid?).to eq(true)
     end
 
   end
@@ -23,30 +24,55 @@ RSpec.describe User, type: :model do
       user.save
       friend.save
       friend.friend_requests.create(friend: user)
-      expect(friend.requests.first).to eq(user)
-      expect(user.requests.first).to eq(friend)
+      user.reload
+      expect(friend.users_in_request.first).to eq(user)
+      expect(user.users_in_request.first).to eq(friend)
     end
 
     it "a user can accept a friend request" do
       user.save
       friend.save
       user.friend_requests.create(friend: friend)
-      # I'm not sure here if I need to use active_friendships or
-      # passive_frienship
-      friend.active_friendships.create(friend: user)
-      expect(friend.friends.first).to eq(user)
+      friend.requests.first.accept
+      expect(friend.reload.friends.first).to eq(user)
+      expect(user.reload.friends.first).to eq(friend)
     end
 
-    # it "a user can decline a friend request" do
-    #   @friend_request.decline
-    #   expect { @friend_request.reload }.to raise_error ActiveRecord::RecordNotFound
-    # end
+    it "a user can decline a friend request" do
+      user.save
+      friend.save
+      user.friend_requests.create(friend: friend)
+      friend.reload.requests.first.decline
+      expect(friend.reload.requests).to be_empty
+      expect(user.reload.requests).to be_empty
+    end
 
-    # it "a user can check its pending requests" do
-    # end
+    it "a user can check its pending requests" do
+      user.save
 
-    # it "a user can check all its friends" do
-    # end
+      requested_users.each do |requested_user|
+        user.friend_requests.create(friend: requested_user)
+      end
+
+      future_friend = requested_users.first
+      expect(user.requests.size).to eq(10)
+      expect(future_friend.reload.users_in_request.first).to eq(user)
+      expect(user.reload.users_in_request.first).to eq(future_friend)
+    end
+
+    it "a user can check all its friends" do
+      user.save
+      requested_users.each do |requested_user|
+        user.friend_requests.create(friend: requested_user)
+        requested_user.requests.first.accept
+      end
+
+      friend = requested_users.first
+
+      expect(user.friends.size).to eq(10)
+      expect(user.friends.first).to eq(friend)
+      expect(friend.friends.first).to eq(user)
+    end
 
   end
 end
