@@ -35,6 +35,7 @@ class LikesController < ApplicationController
 
   def like_to_be_destroyed
     @like = Like.find(params[:id])
+    @post = Post.find_by(id: params[:like][:post_id])
   end
 
 end
