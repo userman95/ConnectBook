@@ -1,0 +1,14 @@
+<div class="post-section">
+  <div class="post-origin">
+    <%= link_to post.user.name,user_path(post.user) %>
+  </div>
+  <p><%= post.content %></p>
+  <div class="text-right">
+    <span id="post-<%= post.id %>-likes"><%= post.likes.count%></span>
+    <span><%= post.comments.count %></span>
+  </div>
+  <div class="post-reactions" id="post-<%= post.id %>-attention" >
+    <!-- <button id="precious" type="button" name="button">HERE</button> -->
+    <%= render 'likes/likes', resource: post %>
+  </div>
+</div>

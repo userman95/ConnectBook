@@ -1,0 +1,13 @@
+<% if @like = current_user.likes.find_by(post_id: resource.id) %>
+  <%= form_for(@like, method: :delete, remote: true) do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :post_id, value: resource.id %>
+    <%= button_to "Like", class: "index-buttons" %>
+  <% end %>
+<% else %>
+  <%= form_for(current_user.likes.build, method: :post, remote: true) do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :post_id, value: resource.id %>
+    <%= button_to "Like", class: "index-buttons" %>
+  <% end %>
+<% end %>
