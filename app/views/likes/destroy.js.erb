@@ -1,2 +1,2 @@
 $("#post-<%= @post.id %>-attention").html("<%= escape_javascript(render('likes/likes', resource: @like.post)) %>");
-$("#post-<%= @like.post.id %>-likes").html("<%= @like.post.likes.count %>");
+$("#post-<%= @post.id %>-likes").html("<%= @post.likes.count %>");
