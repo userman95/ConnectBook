@@ -6,7 +6,7 @@ RSpec.describe Comment, type: :model do
   let(:friend){ create(:user_with_posts, name: "Efrain") }
   let(:comment){ build(:comment, user: friend, post: user.posts.last) }
 
-  context "validation tests" do
+  describe "validations" do
     it "comment should be valid" do
       expect(comment).to be_valid
     end
@@ -22,7 +22,7 @@ RSpec.describe Comment, type: :model do
     end
   end
 
-  context "association tests" do
+  describe "associations" do
     it "a comment should belong to a post" do
       expect(comment.post).to eq(user.posts.last)
       expect(comment.post).to_not eq(user.posts.first)

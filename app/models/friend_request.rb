@@ -8,20 +8,10 @@ class FriendRequest < ApplicationRecord
 
   # the idea is to create a friend request and then accept it like this:
   # (receiver_user).friend_requests.create(friend: sender_user)
-  # and then to accept it: current_user.friend_requests.accept
 
   validate :existence_of_friendship
   validate :uniqueness_of_friend_request
   validate :exclude_self_friend_request
-
-  def accept
-    user.added_by_friends << friend
-    destroy
-  end
-
-  def decline
-    destroy
-  end
 
   private
 

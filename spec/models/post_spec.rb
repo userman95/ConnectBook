@@ -5,7 +5,7 @@ RSpec.describe Post, type: :model do
   let(:user){ create(:user, name: "Efrain", email: "e@mail.c") }
   let(:post){ build(:post, content: "First post", user: user) }
 
-  context "validation tests" do
+  describe "validations" do
     it "post should be valid" do
       expect(post).to be_valid
     end
@@ -21,7 +21,7 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  context "association tests" do
+  describe "associations" do
     let(:friends_for_likes){ create_list(:user, 10) }
     let(:friends_for_comments){ create_list(:user, 5) }
 

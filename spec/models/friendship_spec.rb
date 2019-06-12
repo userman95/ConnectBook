@@ -6,7 +6,7 @@ RSpec.describe Friendship, type: :model do
   let(:friend){ create(:user, name: "Efrain",email: "e@mail.com") }
   let(:friendship){ build(:friendship, user: user, friend: friend) }
 
-  context "validation tests" do
+  describe "validations" do
     let(:inverse_friendship){ build(:friendship, user: friend, friend: user) }
     let(:itself_friendship){ build(:friendship, user: friend, friend: friend) }
 
@@ -30,7 +30,7 @@ RSpec.describe Friendship, type: :model do
     end
   end
 
-  context "association tests" do
+  describe "associations" do
     it "a user can be friends with another user" do
       friendship.save
       user.reload
