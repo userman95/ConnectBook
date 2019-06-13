@@ -43,7 +43,7 @@ RSpec.describe User, type: :model do
       friend.save
       user.friend_requests.create(friend: friend)
       friend.active_friendships.create(friend: user)
-      expect(FriendRequest.where(user: user, friend: friend).first).to be_nil
+      expect(user.reload.requests.first).to be_nil
       expect(friend.reload.friends.first).to eq(user)
       expect(user.reload.friends.first).to eq(friend)
     end
