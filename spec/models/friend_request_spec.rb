@@ -43,6 +43,7 @@ RSpec.describe FriendRequest, type: :model do
       end
 
       it "shouldn't be able to send a friend request if users are friends" do
+        friend_request.save
         friendship
         user.reload
         friend.reload

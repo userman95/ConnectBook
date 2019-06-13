@@ -17,10 +17,7 @@ class FriendRequest < ApplicationRecord
 
   private
 
-    def check_duplicates
-      return if FriendRequest.where(user: user, friend: friend).empty?
-      self.user, self.friend = friend, user
-    end
+    # Validations
 
     def existence_of_friendship
       errors.add(:friendship, "already exists") if user.friends.include?(friend)
@@ -32,6 +29,13 @@ class FriendRequest < ApplicationRecord
           errors.add(:friend_request, "already exists")
         end
       end
+    end
+
+    # Callbacks
+
+    def check_duplicates
+      return if FriendRequest.where(user: user, friend: friend).empty?
+      self.user, self.friend = friend, user
     end
 
     def exclude_self_friend_request

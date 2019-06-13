@@ -42,9 +42,8 @@ RSpec.describe User, type: :model do
       user.save
       friend.save
       user.friend_requests.create(friend: friend)
-      friend.added_by_friends << user
-      friend.requests.first.destroy
-      expect(FriendRequest.find_by(id: friend.requests.first.id)).to be_nil
+      friend.active_friendships.create(friend: user)
+      expect(FriendRequest.where(user: user, friend: friend).first).to be_nil
       expect(friend.reload.friends.first).to eq(user)
       expect(user.reload.friends.first).to eq(friend)
     end
@@ -77,8 +76,7 @@ RSpec.describe User, type: :model do
 
       requested_users.each do |requested_user|
         user.friend_requests.create(friend: requested_user)
-        requested_user.added_by_friends << user
-        requested_user.requests.first.destroy
+        requested_user.active_friendships.create(friend: user)
       end
 
       friend = requested_users.first

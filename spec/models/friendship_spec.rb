@@ -4,7 +4,8 @@ RSpec.describe Friendship, type: :model do
 
   let(:user){ create(:user, name: "Orestis",email: "o@mail.com") }
   let(:friend){ create(:user, name: "Efrain",email: "e@mail.com") }
-  let(:friendship){ build(:friendship, user: user, friend: friend) }
+  let(:friend_request){ create(:friend_request, user: user, friend: friend) }
+  let(:friendship){ build(:friendship, user: friend, friend: user) }
 
   describe "validations" do
     let(:inverse_friendship){ build(:friendship, user: friend, friend: user) }
@@ -19,6 +20,7 @@ RSpec.describe Friendship, type: :model do
     end
     
     it "inverse friendship shouldn't be valid" do
+      friend_request
       friendship.save
       user.reload
       friend.reload
@@ -32,6 +34,7 @@ RSpec.describe Friendship, type: :model do
 
   describe "associations" do
     it "a user can be friends with another user" do
+      friend_request
       friendship.save
       user.reload
       friend.reload
