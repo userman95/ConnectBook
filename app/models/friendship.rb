@@ -2,17 +2,26 @@ class Friendship < ApplicationRecord
   belongs_to :user, class_name: 'User'
   belongs_to :friend, class_name: 'User'
 
-  validates :user, presence: true
-  validates :friend, presence: true
+  before_validation :check_duplicates, on: :create
+
+  validates :user, presence: true, uniqueness: { scope: :friend }
+  validates :friend, presence: true, uniqueness: { scope: :user }
   validate :friendship_uniqueness
   validate :self_friendship
 
 
   private
   
+    def check_duplicates
+      return if Friendship.where(user: user, friend: friend).empty?
+      self.user, self.friend = friend, user
+    end
+
     def friendship_uniqueness
-      if user.friends.include?(friend) || friend.friends.include?(user)
-        errors.add(:friendship,'already exists')
+      if user && friend
+        if user.friends.include?(friend) || friend.friends.include?(user)
+          errors.add(:friendship,'already exists')
+        end
       end
     end
 
