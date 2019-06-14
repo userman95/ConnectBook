@@ -4,10 +4,9 @@ class UsersController < ApplicationController
   end
 
   def send_request
-    p params
     @user = User.find_by(id: params[:id])
     @friend_request = @user.friend_requests.create(friend: current_user)
-    redirect_to users_index_path
+    redirect_to users_path
   end
 
   def pending_requests
@@ -16,7 +15,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @posts = @user.posts
+    @post = current_user.posts.build
+    @posts = @user.feed
   end
 
 end

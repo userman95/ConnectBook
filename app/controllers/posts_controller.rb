@@ -3,14 +3,18 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.create(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to posts_path
+      flash[:success] = "Post created"
+      redirect_to current_user
+    else
+      @posts = Post.all
+      render 'users/show'
     end
   end
 
   def index
-    p params
+    @post = current_user.posts.build
     @posts = Post.all
   end
 
@@ -19,7 +23,7 @@ class PostsController < ApplicationController
 
   private
 
-  def post_params
-    params.permit(:content, :like)
-  end
+    def post_params
+      params.require(:post).permit(:content, :picture)
+    end
 end

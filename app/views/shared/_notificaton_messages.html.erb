@@ -1,0 +1,4 @@
+<% flash.each do |status, msg| %>
+  <%# content_tag(:div, msg, class: "alert alert-#{status} alert-dismissible fade show", role: "alert") %>
+  <%= content_tag(:div, msg, class: "alert alert-#{status}") %>
+<% end %>

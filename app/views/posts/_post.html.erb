@@ -1,8 +1,11 @@
 <div class="post-section">
   <div class="post-origin">
-    <%= link_to post.user.name,user_path(post.user) %>
+    <%= link_to post.user.name, post.user %>
   </div>
   <p><%= post.content %></p>
+  <span class="content">
+    <%= image_tag post.picture.url if post.picture? %>
+  </span>
   <div class="text-right">
     <span id="post-<%= post.id %>-likes"><%= post.likes.count%></span>
     <span><%= post.comments.count %></span>
