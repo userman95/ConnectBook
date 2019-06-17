@@ -1,0 +1,5 @@
+<% unless @comment.errors.any? %>
+  $("#post-<%= @post.id %>-comments").append('<%= escape_javascript(render @comment) %>');
+  $("#post-<%= @post.id %>-comment-input")[0].reset();
+  $("#post-<%= @post.id %>-comments-count").html("<small><%= @post.comments.count %> comments</small>");
+<% end %>

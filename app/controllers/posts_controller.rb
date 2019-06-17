@@ -11,15 +11,16 @@ class PostsController < ApplicationController
 
   def index
     p params
-    @posts = Post.all
+    @posts = Post.newer_posts
   end
 
-  def edit
+  def show
+    @post = Post.find(params[:id])
   end
 
   private
 
   def post_params
-    params.permit(:content, :like)
+    params.require(:post).permit(:content, :like)
   end
 end

@@ -1,14 +1,27 @@
+
 <div class="post-section">
   <div class="post-origin">
     <%= link_to post.user.name,user_path(post.user) %>
+    <small><%= time_ago_in_words(post.created_at) %> ago</small>
   </div>
   <p><%= post.content %></p>
-  <div class="text-right">
-    <span id="post-<%= post.id %>-likes"><%= post.likes.count%></span>
-    <span><%= post.comments.count %></span>
+  <div class="text-right likes-info-counters">
+    <span class="likes-image"></span>
+    <span class="likes-counter">
+      <small id="post-<%= post.id %>-likes"><%= post.likes.count %> </small>
+    </span>
+    <span class="comments-counter" id="post-<%= post.id %>-comments-count">
+      <small>
+        <%= post.comments.count %> comments
+      </small>
+    </span>
   </div>
   <div class="post-reactions" id="post-<%= post.id %>-attention" >
-    <!-- <button id="precious" type="button" name="button">HERE</button> -->
     <%= render 'likes/likes', resource: post %>
+  </div>
+  <ul class="list-group list-group-flush" id="post-<%= post.id %>-comments">
+  </ul>
+  <div class="comment-form">
+    <%= render 'comments/form', resource: post %>
   </div>
 </div>

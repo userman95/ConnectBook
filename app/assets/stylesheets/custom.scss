@@ -3,6 +3,7 @@
 
 body{
   box-sizing: border-box;
+  background-color: #e9ebee;
 }
 .index-usernames{
   margin-left: 25%;
@@ -80,14 +81,36 @@ body{
 }
 /* POSTS STYLES */
 .field textarea{
-  min-width: 265px;
+  min-width: 100%;
+  outline: none;
+  resize: none;
+  overflow: auto;
+  rows: 5;
 }
 .file-button{
   color: transparent;
+  width: 120px;
+}
+.picture{
+  float: left;
+}
+input[type="file"]:before {
+  border: none;
+}
+.post-button{
+  float: right;
+}
+.likes-info-counters{
+  border-top: 1px solid #e9ebee;
+}
+.post-creation{
+  margin-bottom: 46px;
 }
 .post-section{
   min-width: 265px;
   margin: 13px 0px;
+  padding: 12px;
+  background-color: white;
 }
 .post-origin{
   width: 100%;
@@ -97,5 +120,98 @@ body{
 }
 .post-reactions{
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+  border-top: 1px solid #e9ebee;
+  padding-top: 2px;
+}
+.post-reactions span{
+  display: block;
 }
 //Like button style
+//Comment input STYLES
+.comment-button{
+  background-image: url(/assets/comment.png);
+  display: block;
+  background-size: 22px;
+  width: 100%;
+  background-position: center 2px;
+  height: 29px;
+  background-repeat: no-repeat;
+  text-align: right;
+  line-height: 30px;
+  color: slategrey;
+}
+.comment-button:hover{
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, .05);
+}
+.comment-list{
+  display: none;
+}
+.comment-input{
+  border: 1px solid #ccd0d5;
+  border-radius: 15px;
+  background-color: #f2f3f5;
+  width: 100%;
+  padding-left: 7px;
+  font-size: 13px;
+}
+.list-comment-item{
+  word-wrap: break-word;
+  border: 1px solid #ccd0d5;
+  border-radius: 15px;
+  background-color: #f2f3f5;
+  width: 100%;
+  padding: 5px 4px;
+  font-size: 13px;
+  margin: 3px;
+}
+.list-group{
+  padding-left: 0px;
+  padding-right: 2px;
+  margin-bottom: 0;
+  list-style: none;
+}
+.comment-delete-link{
+  display: inline-block;
+  float: right;
+}
+input:focus{
+  outline: none;
+}
+.likes{
+  background-image: url(/assets/reaction-buttons.jpg);
+  width: 100%;
+  background-size: 46px;
+  height: 29px;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center -10px;
+  background-color: transparent;
+  border: none;
+}
+.likes:hover{
+  background-color: rgba(0, 0, 0, .05);
+}
+.comment-display{
+  padding: 0;
+}
+.like-display{
+  padding: 0;
+}
+.likes-image{
+  background-image: url(/assets/reaction_buttons.png);
+  width: 20px;
+  height: 20px;
+  float: left;
+  display: inline-block;
+  background-position-y: 20px;
+  background-size: 97px;
+  background-position-x: 2px;
+  margin-right: 3px;
+}
+.likes-counter{
+  float: left;
+}

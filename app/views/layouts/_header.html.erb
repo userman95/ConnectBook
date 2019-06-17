@@ -1,16 +1,16 @@
 <header class="navbar navbar-fixed-top head">
-  <div class="container">
+  <div class="container post-container">
     <div class="row">
       <div class="col-md-3">
         <div class="text-right navbar-text navbar-right">
            <%=link_to image_tag("fb-logo.png",size: 24,class: 'navbar-link logo'),users_index_path %>
         </div>
       </div>
-      <div class="col-md-3 navbar-text">
+      <div class="col-md-5 navbar-text">
         <%= search_field_tag 'search','Search for a user' %>
       </div>
 
-      <div class="col-md-6 navbar-text">
+      <div class="col-md-4 navbar-text">
           <div class="navbar-nav profile-options">
             <p>
               <% if user_signed_in? %>
