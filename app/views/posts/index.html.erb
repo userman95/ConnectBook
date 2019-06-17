@@ -6,7 +6,7 @@
         <%= render 'shared/post_form', locals: {post: @post} %>
       </section>
       <section>
-        <%= render partial: 'posts', collection: @posts, as: :post %>
+        <%= render @posts %>
       </section>
     </div>
   </div>

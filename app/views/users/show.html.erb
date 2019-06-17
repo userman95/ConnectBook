@@ -2,11 +2,12 @@
   </div>
   <div class="col-md-4">
     <div class="text-left">
-      <section>
-        <%= render 'shared/post_form', locals: {post: @post} %>
+      <section class="post-creation">
+        <%= render 'shared/notificaton_messages' %>
+        <%= render 'shared/post_form' %>
       </section>
       <section>
-        <%= render partial: '/posts/posts', collection: @posts, as: :post%>
+        <%= render @posts %>
       </section>
     </div>
   </div>

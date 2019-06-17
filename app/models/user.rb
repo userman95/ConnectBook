@@ -68,4 +68,11 @@ class User < ApplicationRecord
     self.name.split.first
   end
 
+  def feed
+    # Scaping id value with the question mark to avoid SQL injection.
+    # Here id is just an integer but it is better to use always this
+    # approach
+    Post.where("user_id = ?", id)
+  end
+
 end

@@ -4,6 +4,7 @@
       <p class="index-usernames"><%= user.name %></p>
     </div>
     <div class="col-md-4">
+      <%= button_to "Add Friend", { action: "send_request", id: user.id }, { class: "index-buttons" } %>
     </div>
   </div>
 <% end %>

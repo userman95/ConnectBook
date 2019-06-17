@@ -32,14 +32,18 @@ body{
 .navbar-text{
   margin-left: 0;
   margin-right: 0;
-  margin-top: 8px;
+  margin-top: 5px;
   margin-bottom: 0;
 }
-
-#search{
+.form-control{
+  max-height: 23px;
+}
+.search-form{
   width: 100%;
 }
-
+.not-info{
+  margin-top: 6px;
+}
 .notifications{
   margin-left: 6px;
 }
@@ -71,6 +75,7 @@ body{
 .logo{
   right: -8px;
   position: absolute;
+  margin-top: 4px;
 }
 #Logout{
   display: inline-block;
@@ -80,6 +85,9 @@ body{
   min-height: 42px;
 }
 /* POSTS STYLES */
+.posted-image{
+  width: 100%;
+}
 .field textarea{
   min-width: 100%;
   outline: none;

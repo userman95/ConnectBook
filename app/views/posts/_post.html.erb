@@ -1,10 +1,13 @@
 
 <div class="post-section">
   <div class="post-origin">
-    <%= link_to post.user.name,user_path(post.user) %>
+    <%= link_to post.user.name, post.user %>
     <small><%= time_ago_in_words(post.created_at) %> ago</small>
   </div>
   <p><%= post.content %></p>
+  <span class="content">
+    <%= image_tag post.picture.url,class: 'posted-image' if post.picture? %>
+  </span>
   <div class="text-right likes-info-counters">
     <span class="likes-image"></span>
     <span class="likes-counter">

@@ -6,14 +6,14 @@ RSpec.describe Like, type: :model do
   let(:friend){ create(:user_with_posts, name: "Efrain") }
   let(:like){ build(:like, user: friend, post: user.posts.last) }
 
-  context "validation tests" do
+  describe "validations" do
 
     it "like should be valid" do
       expect(like).to be_valid
     end
   end
 
-  context "association tests" do
+  describe "associations" do
     
     it "user is present" do
       expect(like.user).to be_present

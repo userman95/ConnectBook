@@ -6,19 +6,28 @@ RSpec.describe User, type: :model do
   let(:friend){ build(:user, name: "Orestis", email: "o@mail.c") }
   let(:requested_users){ create_list(:user, 10) }
 
-  context 'validation tests' do
+  describe "validations" do
+    context "right attributes" do
 
-    it 'name should be present' do
-      expect(user.name).not_to be_empty
+      it 'name should be present' do
+        expect(user.name).not_to be_empty
+      end
+
+      it 'user should be valid' do
+        expect(user).to be_valid
+      end
     end
 
-    it 'user should be valid' do
-      expect(user.valid?).to eq(true)
-    end
+    context "empty name" do
 
+      it "is invalid" do
+        user.name = " "
+        expect(user).to be_invalid
+      end
+    end
   end
 
-  context 'association tests' do
+  describe "association" do
 
     it 'user can send/receive a friend request to/from another' do
       user.save
@@ -33,7 +42,8 @@ RSpec.describe User, type: :model do
       user.save
       friend.save
       user.friend_requests.create(friend: friend)
-      friend.requests.first.accept
+      friend.active_friendships.create(friend: user)
+      expect(user.reload.requests.first).to be_nil
       expect(friend.reload.friends.first).to eq(user)
       expect(user.reload.friends.first).to eq(friend)
     end
@@ -42,7 +52,8 @@ RSpec.describe User, type: :model do
       user.save
       friend.save
       user.friend_requests.create(friend: friend)
-      friend.reload.requests.first.decline
+      friend.reload.requests.first.destroy
+
       expect(friend.reload.requests).to be_empty
       expect(user.reload.requests).to be_empty
     end
@@ -62,14 +73,16 @@ RSpec.describe User, type: :model do
 
     it "a user can check all its friends" do
       user.save
+
       requested_users.each do |requested_user|
         user.friend_requests.create(friend: requested_user)
-        requested_user.requests.first.accept
+        requested_user.active_friendships.create(friend: user)
       end
 
       friend = requested_users.first
 
-      expect(user.friends.size).to eq(10)
+      expect(user.reload.friends.size).to eq(10)
+      expect(user.requests.count).to eq(0)
       expect(user.friends.first).to eq(friend)
       expect(friend.friends.first).to eq(user)
     end
