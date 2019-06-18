@@ -5,6 +5,9 @@ body{
   box-sizing: border-box;
   background-color: #e9ebee;
 }
+.header-profile-image{
+  border-radius: 50%;
+}
 .suggested-users{
   background-color: white;
   padding: 20px;
@@ -33,7 +36,7 @@ body{
   margin-left: 3px;
 }
 .friend-style-addition{
-  margin-left: 20px;
+  margin-left: 5px;
 }
 .add-friend-button{
   background-image: image-url("add.png");
@@ -45,6 +48,14 @@ body{
   background-size: 30px;
   background-repeat: no-repeat;
   background-position: 0;
+  border-radius: 10px;
+}
+.delete-friend-button{
+  background-color: #e9ebee;
+  border: 1px solid #c2c4c7;
+  color: black;
+  padding: 0 22px;
+  font-size: 13px;
   border-radius: 10px;
 }
 .index-buttons{
@@ -81,6 +92,10 @@ body{
 }
 .not-info{
   margin-top: 6px;
+  padding: 0;
+}
+.profile-options {
+    margin: 0 0 3px;
 }
 .notifications{
   margin-left: 6px;
@@ -118,9 +133,6 @@ body{
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: -4px;
-}
-.profile-options{
-  margin-top: 4px;
 }
 .logo{
   right: -8px;

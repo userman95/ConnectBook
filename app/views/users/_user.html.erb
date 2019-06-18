@@ -1,4 +1,4 @@
-<% if !current_user.pending_friends.include?(user) && current_user != user && !current_user.pending_acceptances.include?(user)%>
+<% if current_user != user && !current_user.pending_friends.include?(user) && !current_user.pending_acceptances.include?(user)%>
   <div class="row">
     <div class="col-md-6">
       <div class="suggested-users text-center" id="suggested-user-<%= user.id %>">
