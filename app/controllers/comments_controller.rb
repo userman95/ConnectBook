@@ -2,11 +2,6 @@ class CommentsController < ApplicationController
 
   before_action :comment_to_be_destroyed, only: :destroy
 
-  def comments_of_post
-    @post = Post.find_by(id: params[:id])
-    @comments = @post.comments
-  end
-
   def create
     @comment = current_user.comments.build(comment_params)
     @post = @comment.post

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @users = if params[:search]
       User.where('name LIKE ?', "%#{params[:search]}%")
     else
-      User.all
+      User.where.not(friends: current_user.friends)
     end
   end
 
@@ -13,5 +13,20 @@ class UsersController < ApplicationController
     @posts = @user.feed
   end
 
+  def update
+    @user = User.find_by(id: params[:id])
+    @user.update_attributes(image: params[:user][:image])
+
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.js
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:image)
+  end
 
 end

@@ -3,10 +3,11 @@
     <div class="col-md-6">
       <div class="suggested-users text-center" id="suggested-user-<%= user.id %>">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-8 suggested-friends-info">
+            <%= image_tag user.image.url, size: "60x60",class: "user-image" if user.image? %>
             <%= link_to user.name,user,class: 'friend-style-addition' %>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-3 add-friends-image">
             <%= button_to "Add", { controller: 'friend_requests', action: "create"},params: {friend_id: user.id}, remote: true,class: "add-friend-button" %>
           </div>
         </div>
