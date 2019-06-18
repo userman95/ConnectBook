@@ -5,10 +5,44 @@ body{
   box-sizing: border-box;
   background-color: #e9ebee;
 }
-.index-usernames{
-  margin-left: 25%;
+.suggested-users{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: white;
+  padding: 20px;
+  border-left: 1px solid #c2c4c7;
+  border-top: 1px solid #c2c4c7;
+  border-right: 1px solid #c2c4c7;
 }
-
+.friend-requests{
+  display: flex;
+}
+.friend-requests a{
+  flex: 1;
+}
+.accept{
+  background-color: #4267b2;
+  color: white;
+  border: 1px inset #4267b2;
+  border-radius: 2px;
+}
+.decline{
+  background-color: #e9ebee;
+  border: 1px solid #c0c3c7;
+  border-radius: 2px;
+  margin-left: 3px;
+}
+.friend-style-addition{
+  display: inline-block;
+  width: 200px;
+}
+.add-friend-button{
+  background-color: #e9ebee;
+  border: 1px solid #c2c4c7;
+  color: black;
+  padding: 0 31px;
+  font-size: 13px;
+}
 .index-buttons{
   margin-left: 25%;
   background: #0093ffa6;
@@ -68,7 +102,12 @@ body{
   height: 28px;
   width: 28px;
 }
-
+.helper-links{
+  float: right;
+}
+.helper-links:nth-child(2){
+  clear: both;
+}
 .profile-options{
   margin-top: 4px;
 }

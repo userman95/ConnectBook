@@ -3,7 +3,6 @@ class Friendship < ApplicationRecord
   belongs_to :friend, class_name: 'User'
 
   before_validation :check_duplicates, on: :create
-  after_commit :delete_friend_request
 
   validates :user, presence: true, uniqueness: { scope: :friend }
   validates :friend, presence: true, uniqueness: { scope: :user }
@@ -34,9 +33,4 @@ class Friendship < ApplicationRecord
       self.user, self.friend = friend, user
     end
 
-    def delete_friend_request
-      if user && friend
-        FriendRequest.where(user: friend, friend: user).first.destroy
-      end
-    end
 end

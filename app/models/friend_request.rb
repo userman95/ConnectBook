@@ -8,6 +8,7 @@ class FriendRequest < ApplicationRecord
   validates :user, presence: true, uniqueness: { scope: :friend }
   validates :friend, presence: true, uniqueness: { scope: :user }
 
+
   # the idea is to create a friend request and then accept it like this:
   # (receiver_user).friend_requests.create(friend: sender_user)
 

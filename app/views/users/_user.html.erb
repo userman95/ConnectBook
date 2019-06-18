@@ -1,10 +1,16 @@
-<% if current_user.id != user.id %>
+<% if !current_user.pending_friends.include?(user) && current_user != user && !current_user.pending_acceptances.include?(user)%>
   <div class="row">
-    <div class="col-md-3">
-      <p class="index-usernames"><%= user.name %></p>
-    </div>
-    <div class="col-md-4">
-      <%= button_to "Add Friend", { action: "send_request", id: user.id }, { class: "index-buttons" } %>
+    <div class="col-md-6">
+      <div class="suggested-users text-center" id="suggested-user-<%= user.id %>">
+        <div class="row">
+          <div class="col-md-6">
+            <%= link_to user.name,user,class: 'friend-style-addition' %>
+          </div>
+          <div class="col-md-6">
+            <%= button_to "Add", { controller: 'friend_requests', action: "create"},params: {friend_id: user.id}, remote: true,class: "add-friend-button" %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>

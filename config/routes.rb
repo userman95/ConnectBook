@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   end
   resources :users
   resources :likes, only: [:create, :destroy]
+  resources :friend_requests, only: [:create, :index, :destroy]
   resources :comments, only: [:create, :index, :destroy, :comments_of_post]
-
+  resources :friendships, only: [:create, :index, :destroy]
   root to: "users#index"
 
 end

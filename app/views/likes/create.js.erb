@@ -1,4 +1,4 @@
 <% unless @like.errors.any? %>
-    $("#post-<%= @post.id %>-attention").html("<%= escape_javascript(render('likes/likes', resource: @like.post)) %>");
-    $("#post-<%= @like.post.id %>-likes").html("<%= @like.post.likes.count %>");
-  <% end %>
+  $("#post-<%= @post.id %>-attention").html("<%= escape_javascript(render('likes/likes', resource: @like.post)) %>");
+  $("#post-<%= @like.post.id %>-likes").html("<%= @like.post.likes.count %>");
+<% end %>
