@@ -5,14 +5,17 @@ body{
   box-sizing: border-box;
   background-color: #e9ebee;
 }
+.header-profile-image{
+  border-radius: 50%;
+}
 .suggested-users{
-  display: flex;
-  justify-content: space-evenly;
   background-color: white;
   padding: 20px;
-  border-left: 1px solid #c2c4c7;
-  border-top: 1px solid #c2c4c7;
-  border-right: 1px solid #c2c4c7;
+  margin-bottom: 1px;
+  border: 1px solid #c2c4c7;
+}
+.suggested-friends-info{
+  display: flex;
 }
 .friend-requests{
   display: flex;
@@ -33,15 +36,27 @@ body{
   margin-left: 3px;
 }
 .friend-style-addition{
-  display: inline-block;
-  width: 200px;
+  margin-left: 5px;
 }
 .add-friend-button{
+  background-image: image-url("add.png");
   background-color: #e9ebee;
   border: 1px solid #c2c4c7;
   color: black;
   padding: 0 31px;
   font-size: 13px;
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: 0;
+  border-radius: 10px;
+}
+.delete-friend-button{
+  background-color: #e9ebee;
+  border: 1px solid #c2c4c7;
+  color: black;
+  padding: 0 22px;
+  font-size: 13px;
+  border-radius: 10px;
 }
 .index-buttons{
   margin-left: 25%;
@@ -77,6 +92,10 @@ body{
 }
 .not-info{
   margin-top: 6px;
+  padding: 0;
+}
+.profile-options {
+    margin: 0 0 3px;
 }
 .notifications{
   margin-left: 6px;
@@ -105,11 +124,15 @@ body{
 .helper-links{
   float: right;
 }
-.helper-links:nth-child(2){
+.helper-links-second{
   clear: both;
-}
-.profile-options{
-  margin-top: 4px;
+  float: right;
+  background-image: image-url("friends.png");
+  display: block;
+  padding-left: 34px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: -4px;
 }
 .logo{
   right: -8px;
@@ -124,6 +147,12 @@ body{
   min-height: 42px;
 }
 /* POSTS STYLES */
+.user-post-information{
+  margin-left: 6px;
+}
+.user-image{
+  border-radius: 50%;
+}
 .posted-image{
   width: 100%;
 }
@@ -161,6 +190,8 @@ input[type="file"]:before {
 }
 .post-origin{
   width: 100%;
+  display: flex;
+  margin-bottom: 10px;
 }
 .post-attention{
   width: 100%;
@@ -175,6 +206,8 @@ input[type="file"]:before {
 }
 .post-reactions span{
   display: block;
+}
+.friends-link-icon{
 }
 //Like button style
 //Comment input STYLES
@@ -261,4 +294,36 @@ input:focus{
 }
 .likes-counter{
   float: left;
+}
+//USER PROFILE STYLES
+.profile-image{
+  border-radius: 50%;
+  border: 4px outset white;
+  border-style: solid inset solid solid;
+  position: absolute;
+  top: 5px;
+  left: 20px;
+}
+.profile-wall-images{
+  background-image: image-url("lion-tattoos.jpg");
+  height: 160px;
+}
+.file-profile-button{
+  float: left;
+  width: 120px;
+  margin-right: 3px;
+}
+.upload-prof-image{
+  float: left;
+  padding: 1px;
+  height: 22px;
+  font-size: 13px;
+  background-color: cornflowerblue;
+  border: 1px solid grey;
+  color: white;
+  border-radius: 5px;
+}
+.profile-images-buttons{
+  padding-top: 4px;
+  padding-bottom: 52px;
 }

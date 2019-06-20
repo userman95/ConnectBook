@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   has_many :received_requests, class_name: "FriendRequest",
     foreign_key: :friend_id
-  
+
   has_many :pending_friends, through: :friend_requests,
     source: :friend, dependent: :destroy
 
@@ -34,6 +34,11 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :name, presence: true
+
+  mount_uploader :image, PictureUploader
+
+  validate :image_size
+
 
   def friends
     added_friends + added_by_friends
@@ -73,6 +78,13 @@ class User < ApplicationRecord
     # Here id is just an integer but it is better to use always this
     # approach
     Post.where("user_id = ?", id)
+  end
+
+
+  def image_size
+    if image.size > 5.megabytes
+      errors.add(:image, "should be less than 5MB")
+    end
   end
 
 end

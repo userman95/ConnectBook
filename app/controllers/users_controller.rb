@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @users = if params[:search]
       User.where('name LIKE ?', "%#{params[:search]}%")
     else
-      User.all
+      User.where('id NOT IN (SELECT DISTINCT(friend_id) FROM friendships) AND id NOT IN (SELECT DISTINCT(friend_id) FROM friendships)')
     end
   end
 
@@ -13,5 +13,18 @@ class UsersController < ApplicationController
     @post = current_user.posts.build
     @posts = @user.feed
   end
+
+  def update
+    @user = User.find_by(id: params[:id])
+    @user.update_attributes(user_params)
+
+    render format: :js
+  end
+
+  private
+
+    def user_params
+      params.require(:user).permit(:image)
+    end
 
 end

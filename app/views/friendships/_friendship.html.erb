@@ -1,8 +1,17 @@
-<div class="col-md-3">
-</div>
-<div class="col-md-6" id="friendship-<%= friend.id %>">
-  <p><%= friend.name %></p>
-  <%= button_to "Delete Friend", friendship_path(friend), method: :delete, remote: true %>
-</div>
-<div class="col-md-3">
+<div class="col-md-9 col-md-offset-3">
+  <div class="col-md-6">
+    <div class="suggested-users text-center" id="friendship-<%= friend.id %>">
+      <div class="row">
+        <div class="col-md-6 suggested-friends-info">
+          <%= image_tag friend.image.url, size: "60x60",class: "user-image" if friend.image? %>
+          <%= link_to friend.name,friend,class: 'friend-style-addition' %>
+        </div>
+        <div class="col-md-3 add-friends-image">
+          <%= button_to "Delete Friend", friendship_path(friend), method: :delete, remote: true,class: "delete-friend-button" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+  </div>
 </div>
