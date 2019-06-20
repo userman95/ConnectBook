@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-  def new
-  end
 
   def create
     @post = current_user.posts.build(post_params)
@@ -25,6 +23,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :like, :picture)
+    params.require(:post).permit(:content, :picture)
   end
 end

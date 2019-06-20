@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 text-center like-display">
+        <% if like %>
+          <%= link_to "", [like.post, like],
+            class: "likes", method: :delete, remote: true %>
+        <% else %>
+          <%= link_to "", [like.post, Like.new],
+            class: "likes", method: :post, remote: true %>
+        <% end %>
+    </div>
+  </div>
+</div>

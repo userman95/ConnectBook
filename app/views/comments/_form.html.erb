@@ -1,4 +1,6 @@
-<%= form_for(current_user.comments.build, remote: true, html: {id: "post-#{resource.id}-comment-input"} ) do |f| %>
+<%= form_with(model: [resource, resource.comments.build], 
+  html: {id: "post-#{resource.id}-comment-input"}) do |f| %>
   <%= f.hidden_field :post_id, value: resource.id %>
-  <%= f.text_field :content, placeholder: 'Write a comment...', class: "comment-input" %>
+  <%= f.text_field :content, 
+    placeholder: 'Write a comment...', class: "comment-input" %>
 <% end %>

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
     @users = if params[:search]
       User.where('name LIKE ?', "%#{params[:search]}%")
@@ -12,6 +13,5 @@ class UsersController < ApplicationController
     @post = current_user.posts.build
     @posts = @user.feed
   end
-
 
 end
