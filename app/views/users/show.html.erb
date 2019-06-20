@@ -4,7 +4,7 @@
   <div class="col-md-6">
     <div class="text-left">
       <div class="profile-wall-images">
-        <%= image_tag @user.image.url, size: "120x120",class: "profile-image" if @user.image? %>
+        <%= image_tag @user.image.small.url, size: "120x120",class: "profile-image" if @user.image? %>
       </div>
       <div class="profile-images-buttons">
         <%= render 'shared/user_form' %>
