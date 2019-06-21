@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @users = if params[:search]
       User.where('name LIKE ?', "%#{params[:search]}%")
     else
-      User.where('id NOT IN (SELECT DISTINCT(friend_id) FROM friendships) AND id NOT IN (SELECT DISTINCT(friend_id) FROM friendships)')
+      User.suggested_friends
     end
   end
 
