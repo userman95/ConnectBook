@@ -27,18 +27,24 @@ class PictureUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+  #process resize_to_limit: [355, 400]
+
+
 
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process resize_to_fit: [50, 50]
-  # end
+  version :thumb do
+    process resize_to_fill: [200, 200]
+  end
+
+  version :small do
+    process resize_to_fill: [120,120]
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
     %w(jpg jpeg gif png)
   end
-
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
@@ -46,5 +52,6 @@ class PictureUploader < CarrierWave::Uploader::Base
   # end
 
   # Custom configuration for Facebook project
-  process resize_to_limit: [335, 400]
+  process resize_to_limit: [800, 800]
+
 end
