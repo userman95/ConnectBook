@@ -4,7 +4,7 @@ class FriendshipsController < ApplicationController
   after_action :destroy_friend_request, only: [:create]
   def create
     @friend = User.find_by(id: params[:friend_id])
-    @friendship = current_user.active_friendships.build(friend: @friend)
+    @friendship = current_user.passive_friendships.build(friend: @friend)
 
     if @friendship.save
       flash[:success] = "You are now friends"

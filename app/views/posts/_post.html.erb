@@ -6,6 +6,13 @@
       <%= link_to post.user.name, post.user %>
       <br><small><%= time_ago_in_words(post.created_at) %> ago</small>
     </div>
+    <div class="dropdown">
+      <ul class="dropdown-menu-custom">
+        <li><a href="#">HTML</a></li>
+        <li><a href="#">CSS</a></li>
+        <li><a href="#">JavaScript</a></li>
+      </ul>
+    </div>
   </div>
   <p><%= post.content %></p>
   <span class="content">

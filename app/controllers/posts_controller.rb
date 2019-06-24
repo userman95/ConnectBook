@@ -13,6 +13,7 @@ class PostsController < ApplicationController
         redirect_to posts_path
       end
     else
+      flash[:danger] = "Post not created"
       @posts = Post.all
       render 'users/show'
     end

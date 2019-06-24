@@ -29,7 +29,7 @@ class Friendship < ApplicationRecord
     # Callbacks
 
     def check_duplicates
-      return if Friendship.where(user: user, friend: friend).empty?
+      return unless Friendship.where(user: user, friend: friend).empty?
       self.user, self.friend = friend, user
     end
 

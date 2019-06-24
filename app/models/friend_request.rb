@@ -35,7 +35,7 @@ class FriendRequest < ApplicationRecord
     # Callbacks
 
     def check_duplicates
-      return if FriendRequest.where(user: user, friend: friend).empty?
+      return unless FriendRequest.where(user: user, friend: friend).empty?
       self.user, self.friend = friend, user
     end
 
