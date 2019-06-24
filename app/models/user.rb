@@ -36,8 +36,10 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   mount_uploader :image, PictureUploader
+  mount_uploader :wallpaper, PictureUploader
 
   validate :image_size
+  validate :wallpaper_size
 
   scope :suggested_friends,
     -> { where('id NOT IN (SELECT DISTINCT(friend_id) FROM friendships)') }
@@ -89,4 +91,9 @@ class User < ApplicationRecord
     end
   end
 
+  def wallpaper_size
+    if wallpaper.size > 5.megabytes
+      errors.add(:wallpaper, "should be less than 5MB")
+    end
+  end
 end

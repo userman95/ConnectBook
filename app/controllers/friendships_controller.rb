@@ -2,7 +2,7 @@ class FriendshipsController < ApplicationController
 
   def create
     @friend = User.find_by(id: params[:friend_id])
-    @friendship = current_user.passive_friendships.build(friend: @friend)
+    @friendship = current_user.passive_friendships.build(user: @friend)
 
     if @friendship.save
       flash[:success] = "You are now friends"

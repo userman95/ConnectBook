@@ -18,13 +18,13 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @user.update_attributes(user_params)
 
-    render format: :js
+    redirect_to user_path
   end
 
   private
 
     def user_params
-      params.require(:user).permit(:image)
+      params.require(:user).permit(:image,:wallpaper)
     end
 
 end

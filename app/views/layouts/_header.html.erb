@@ -37,6 +37,11 @@
             </p>
           </div>
           <div class="navbar-nav notifications ">
+            <% if current_user && current_user.received_requests.any? %>
+                <div class="friend_request_notif">
+                  <small class="friend-request-count"><%= current_user.received_requests.count %></small>
+                </div>
+            <% end %>
               <%= link_to "",friend_requests_path,class: "friend_request navbar-nav" %>
               <%= link_to "",users_path,class: "message navbar-nav" %>
               <%= link_to "",users_path,class: "notification navbar-nav" %>

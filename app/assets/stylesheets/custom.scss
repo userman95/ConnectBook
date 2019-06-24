@@ -312,7 +312,7 @@ input:focus{
   left: 20px;
 }
 .profile-wall-images{
-  background-image: image-url("lion-tattoos.jpg");
+  text-align: center;
   height: 160px;
 }
 .file-profile-button{
@@ -331,27 +331,31 @@ input:focus{
   border-radius: 5px;
 }
 .profile-images-buttons{
-  padding-top: 4px;
+  float: left;
   padding-bottom: 52px;
 }
-.dropdown{
+.profile-wallpaper-button{
+  float: right;
+}
+.dropdown {
   margin-left: auto;
+  cursor: pointer;
 }
 .dropdown:after {
 content: '\2807';
 font-size: 24px;
 }
-.dropdown-menu-custom{
+.menu-custom{
   position: absolute;
-    top: 60%;
+  top: 60%;
   right: 13px;
   z-index: 1000;
-  display: none;
+  display: block;
   float: left;
   min-width: 93px;
   padding: 5px 0;
   font-size: 11px;
-  text-align: left;
+  text-align: center;
   list-style: none;
   background-color: #fff;
   background-clip: padding-box;
@@ -361,4 +365,35 @@ font-size: 24px;
   border-top-right-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+.menu-custom li a {
+  display: block;
+}
+.friend_request_notif{
+  position: absolute;
+}
+.friend-request-count{
+  position: absolute;
+  border: 1px solid red;
+  background: red;
+  border-radius: 50%;
+  width: fit-content;
+  min-width: 14px;
+  left: 16px;
+  height: 15px;
+  color: white;
+  font-size: 11px;
+  text-align: center;
+}
+.default-wallpaper{
+  padding: 50px 0;
+}
+@media (max-width: 1199px){
+  .profile-wallpaper-button {
+    float: left;
+    padding-bottom: 10px;
+  }
+  .profile-images-buttons {
+    padding-bottom: 4px;
+  }
 }

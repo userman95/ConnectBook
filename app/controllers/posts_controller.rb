@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 
+
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
@@ -25,9 +26,17 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def destroy
+    @post = Post.find_by(id: params[:id])
+
+    @post.destroy
+    render formats: :js
+
+  end
+
   private
 
-    def post_params
-      params.require(:post).permit(:content, :picture, :checked_url)
-    end
+  def post_params
+    params.require(:post).permit(:content, :picture, :checked_url)
+  end
 end

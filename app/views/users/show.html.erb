@@ -4,10 +4,20 @@
   <div class="col-md-6">
     <div class="text-left">
       <div class="profile-wall-images">
+        <% if !@user.wallpaper.present? %>
+          <div class="default-wallpaper">
+            <%= image_tag "wallpaper.png",size: "60" %>
+          </div>
+        <% else %>
+          <%= image_tag @user.wallpaper.large.url  %>
+        <% end %>
         <%= image_tag @user.image.small.url, size: "120x120",class: "profile-image" if @user.image? %>
       </div>
       <div class="profile-images-buttons">
         <%= render 'shared/user_form' %>
+      </div>
+      <div class="profile-wallpaper-button">
+        <%= render 'shared/user_wallpaper_form' %>
       </div>
       <section class="post-creation">
         <%= render 'shared/notificaton_messages' %>

@@ -1,18 +1,21 @@
 
-<div class="post-section">
+<div class="post-section" id="post-<%= post.id %>">
   <div class="post-origin">
     <%= image_tag post.user.image.thumb.url, size: "40x40",class: "user-image" if post.user.image? %>
     <div class="user-post-information">
       <%= link_to post.user.name, post.user %>
       <br><small><%= time_ago_in_words(post.created_at) %> ago</small>
     </div>
-    <div class="dropdown">
-      <ul class="dropdown-menu-custom">
-        <li><a href="#">HTML</a></li>
-        <li><a href="#">CSS</a></li>
-        <li><a href="#">JavaScript</a></li>
-      </ul>
+    <% if current_user == post.user %>
+    <div class="dropdown" id="post-<%= post.id %>-dropdown">
+      <div id="post-<%= post.id %>-menu" style="display: none;">
+        <ul class="menu-custom" >
+          <li><%= link_to "Delete", post_path(post),
+            method: :delete, remote: true %></li>
+        </ul>
+      </div>
     </div>
+    <% end %>
   </div>
   <p><%= post.content %></p>
   <span class="content">
