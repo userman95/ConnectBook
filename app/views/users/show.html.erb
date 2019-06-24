@@ -12,6 +12,7 @@
           <%= image_tag @user.wallpaper.large.url  %>
         <% end %>
         <%= image_tag @user.image.small.url, size: "120x120",class: "profile-image" if @user.image? %>
+        <%= link_to "edit credentials", edit_user_registration_path, class: "users-credentials" %>
       </div>
       <div class="profile-images-buttons">
         <%= render 'shared/user_form' %>

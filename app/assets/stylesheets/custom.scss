@@ -309,7 +309,7 @@ input:focus{
   border-style: solid inset solid solid;
   position: absolute;
   top: 5px;
-  left: 20px;
+  left: 35px;
 }
 .profile-wall-images{
   text-align: center;
@@ -387,6 +387,12 @@ font-size: 24px;
 }
 .default-wallpaper{
   padding: 50px 0;
+}
+.users-credentials{
+  position: absolute;
+  left: 50px;
+  top: 124px;
+  display: block;
 }
 @media (max-width: 1199px){
   .profile-wallpaper-button {

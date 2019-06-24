@@ -36,7 +36,7 @@ class Friendship < ApplicationRecord
 
     def delete_friend_request
       if user && friend
-        FriendRequest.where(user: friend, friend: user).first.destroy
+        FriendRequest.where(user: user, friend: friend).first.destroy
       end
     end
 

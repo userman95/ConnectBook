@@ -13,7 +13,7 @@ class FriendRequestsController < ApplicationController
   end
 
   def index
-    @friend_requests = current_user.received_requests
+    @friend_requests = current_user.friend_requests
   end
 
   def destroy
