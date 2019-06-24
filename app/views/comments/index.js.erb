@@ -1,9 +1,3 @@
 <% if @post.comments.any? %>
-  $('#post-<%= @post.id %>-comments').html('<%= escape_javascript(render @comments) %>');
+  $('#post-<%= @post.id %>-comments').html('<%= j(render @comments) %>');
 <% end %>
-
-$(document).ready(function(){
-  $('#post-<%= @post.id %>-comment-button').on("click",function(){
-    $('#post-<%= @post.id %>-comments').toggle();
-  });
-});

@@ -2,6 +2,9 @@
   <%= link_to comment.user.name, user_path(comment.user) %>
   <%=  sanitize comment.content %>
   <% if comment.user == current_user %>
-    <small><%= link_to "Delete",  comment_path(comment), method: :delete, remote: true,class: 'comment-delete-link'%></small>
+    <small>
+      <%= link_to "Delete", [comment.post, comment],
+        method: :delete, remote: true, class: 'comment-delete-link' %>
+    </small>
   <% end %>
 </li>

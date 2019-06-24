@@ -1,44 +1,37 @@
 class CommentsController < ApplicationController
 
-  before_action :comment_to_be_destroyed, only: :destroy
+  before_action :set_post, only: [:create, :index, :destroy]
 
   def create
     @comment = current_user.comments.build(comment_params)
-    @post = @comment.post
+
     if @comment.save
-      respond_to do |format|
-        format.html { redirect_to fallback_location: posts_path }
-        format.js
-      end
+      render format: :js
     end
+
   end
 
   def index
-    @post = Post.find_by(id: params[:post_id])
     @comments = @post.comments
 
-    respond_to do |format|
-      format.html { redirect_to @post }
-      format.js
-    end
+    render format: :js
   end
 
   def destroy
+    @comment = Comment.find_by(id: params[:id])
     @comment.destroy
 
-    respond_to do |format|
-      format.html { redirect_to fallback_location: posts_path }
-      format.js
-    end
+    render format: :js
   end
 
   private
 
-  def comment_params
-    params.require(:comment).permit(:content, :post_id)
-  end
+    def set_post
+      @post = Post.find_by(id: params[:post_id])
+    end
 
-  def comment_to_be_destroyed
-    @comment = Comment.find_by(id: params[:id])
-  end
+    def comment_params
+      params.require(:comment).permit(:content, :post_id)
+    end
+
 end

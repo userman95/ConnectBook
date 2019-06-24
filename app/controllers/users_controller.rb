@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
+
   def index
     @users = if params[:search]
       User.where('name LIKE ?', "%#{params[:search]}%")
     else
-      User.where('id NOT IN (SELECT DISTINCT(friend_id) FROM friendships) AND id NOT IN (SELECT DISTINCT(friend_id) FROM friendships)')
+      User.suggested_friends
     end
   end
 
@@ -15,18 +16,15 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-    @user.update_attributes(image: params[:user][:image])
+    @user.update_attributes(user_params)
 
-    respond_to do |format|
-      format.html { redirect_to @user }
-      format.js
-    end
+    render format: :js
   end
 
   private
 
-  def user_params
-    params.require(:user).permit(:image)
-  end
+    def user_params
+      params.require(:user).permit(:image)
+    end
 
 end

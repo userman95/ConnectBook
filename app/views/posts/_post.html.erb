@@ -25,14 +25,25 @@
     </span>
     <span class="comments-counter" id="post-<%= post.id %>-comments-count">
       <small>
-        <%= post.comments.count %> comments
+        <%= pluralize(post.comments.count, "comment") %>
       </small>
     </span>
   </div>
   <div class="post-reactions" id="post-<%= post.id %>-attention" >
-    <%= render 'likes/likes', resource: post %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-center like-display">
+          <%= render 'likes/button', resource: post %>
+          <%# render post.likes.where(user_id: current_user.id) %>
+        </div>
+        <div class="col-md-6 text-center comment-display">
+          <%= render 'comments/button', resource: post %>
+        </div>
+      </div>
+    </div>
   </div>
   <ul class="list-group list-group-flush" id="post-<%= post.id %>-comments">
+    <%= render post.comments %>
   </ul>
   <div class="comment-form">
     <%= render 'comments/form', resource: post %>

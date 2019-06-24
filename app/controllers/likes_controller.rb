@@ -1,41 +1,32 @@
 class LikesController < ApplicationController
 
-  before_action :like_to_be_destroyed, only: [:destroy]
+  before_action :set_post, only: [:create, :destroy]
 
   def create
-    p params
-    @post = Post.find_by(id: params[:like][:post_id])
-    @like = Like.create(user_id: current_user.id, post_id: @post.id)
+    @like = current_user.likes.build(like_params)
 
-    respond_to do |format|
-      if @like.save
-        format.html { redirect_to @like.post, success: 'Liked post!' }
-        format.js
-      else
-        format.html { redirect_back fallback_location: root_path, danger: 'Something went wrong!' }
-        format.js
-      end
+    if @like.save
+      render formats: :js
+    else
+      render formats: :js
     end
   end
 
   def destroy
+    @like = Like.find(params[:id])
     @like.destroy
 
-    respond_to do |format|
-      format.html { redirect_to @like.post }
-      format.js
-    end
+    render formats: :js
   end
 
   private
 
-  def like_params
-    params.require(:like).permit(:post_id)
-  end
+    def like_params
+      params.require(:like).permit(:post_id)
+    end
 
-  def like_to_be_destroyed
-    @like = Like.find(params[:id])
-    @post = Post.find_by(id: params[:like][:post_id])
-  end
+    def set_post
+      @post = Post.find_by(id: params[:post_id])
+    end
 
 end

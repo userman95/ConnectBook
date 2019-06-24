@@ -39,6 +39,8 @@ class User < ApplicationRecord
 
   validate :image_size
 
+  scope :suggested_friends,
+    -> { where('id NOT IN (SELECT DISTINCT(friend_id) FROM friendships)') }
 
   def friends
     added_friends + added_by_friends
