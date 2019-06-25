@@ -332,7 +332,6 @@ input:focus{
 }
 .profile-images-buttons{
   float: left;
-  padding-bottom: 52px;
 }
 .profile-wallpaper-button{
   float: right;
@@ -390,9 +389,17 @@ font-size: 24px;
 }
 .users-credentials{
   position: absolute;
-  left: 50px;
-  top: 124px;
+  left: 37px;
+  top: 132px;
+  border-radius: 7px;
+  width: 117px;
+  color: white;
+  background: #c9c5c5;
   display: block;
+}
+.images-buttons{
+  margin-bottom: 46px;
+  margin-top: 2px;
 }
 @media (max-width: 1199px){
   .profile-wallpaper-button {

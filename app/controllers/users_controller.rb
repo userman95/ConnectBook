@@ -15,10 +15,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(id: params[:id])
-    @user.update_attributes(user_params)
-
-    redirect_to user_path
+    if params[:user]
+      @user = User.find_by(id: params[:id])
+      @user.update_attributes(user_params)
+      redirect_to user_path
+    else
+      flash[:danger] = "You must first pick a file to upload"
+      redirect_to user_path
+      #redirect_to user_path because the input button gets disabled after error
+    end
   end
 
   private
