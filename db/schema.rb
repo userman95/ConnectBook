@@ -75,7 +75,6 @@ ActiveRecord::Schema.define(version: 2019_06_13_142549) do
     t.string "uid"
     t.text "image"
     t.string "name"
-    t.string "wallpaper"
     t.integer "sign_in_count", default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"

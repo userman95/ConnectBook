@@ -12,6 +12,7 @@ class PostsController < ApplicationController
       end
     else
       flash[:danger] = "Post not created"
+      @user = @post.user
       @posts = Post.all
       render 'users/show'
     end
