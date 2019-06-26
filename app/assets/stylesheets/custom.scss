@@ -316,12 +316,10 @@ input:focus{
   height: 160px;
 }
 .file-profile-button{
-  float: left;
   width: 120px;
   margin-right: 3px;
 }
 .upload-prof-image{
-  float: left;
   padding: 1px;
   height: 22px;
   font-size: 13px;
@@ -330,11 +328,8 @@ input:focus{
   color: white;
   border-radius: 5px;
 }
-.profile-images-buttons{
-  float: left;
-}
-.profile-wallpaper-button{
-  float: right;
+.sample-form{
+  display: flex;
 }
 .dropdown {
   margin-left: auto;
@@ -398,8 +393,9 @@ font-size: 24px;
   display: block;
 }
 .images-buttons{
-  margin-bottom: 46px;
-  margin-top: 2px;
+  display: flex;
+  justify-content: space-between;
+  margin: 3px 0 22px 0;
 }
 @media (max-width: 1199px){
   .profile-wallpaper-button {
