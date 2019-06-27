@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:image,:wallpaper)
+      params.require(:user).permit(:image, :wallpaper)
     end
 
 end

@@ -39,7 +39,6 @@ RSpec.feature "Create Posts", type: :feature do
     end
 
     expect(page).to have_content "Post not created"
-    expect(page).to have_content "Content can't be blank"
   end
 
   scenario "with picture" do
