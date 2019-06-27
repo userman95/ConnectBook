@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
 
     if @comment.save
-      render format: :js
+      render formats: :js
     end
 
   end
@@ -14,14 +14,14 @@ class CommentsController < ApplicationController
   def index
     @comments = @post.comments
 
-    render format: :js
+    render formats: :js
   end
 
   def destroy
     @comment = Comment.find_by(id: params[:id])
     @comment.destroy
 
-    render format: :js
+    render formats: :js
   end
 
   private

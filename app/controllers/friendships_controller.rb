@@ -18,7 +18,7 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.find_by(friend_id: params[:id])
     @friendship.destroy
 
-    render format: :js
+    render formats: :js
   end
 
 end

@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.feature "CreateLikes", type: :feature do
   
   let(:user){ create(:user, name: "Efrain", email: "e@mail.com") }
+  let(:post){ create(:post, user: user) }
 
   before :each do
     user
@@ -13,13 +14,8 @@ RSpec.feature "CreateLikes", type: :feature do
   end
 
   scenario "when click on button" do
-
+    post
     visit posts_path
-
-    within "#new_post" do
-      fill_in "post_content", with: "My new post"
-      click_button "Post"
-    end
     
     within ".like-display" do
       find("input", class: "likes").click

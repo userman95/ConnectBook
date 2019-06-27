@@ -2,18 +2,18 @@ require 'rails_helper'
 
 RSpec.feature "Delete Posts", type: :feature do
   
-  let(:user){ create(:user) }
+  let(:user){ create(:user, email: "e@mail.com") }
   let(:post){ create(:post, user: user) }
 
   before :each do
     user
     visit new_user_session_path
-    fill_in 'Email',  with: "user1@mail.c"
+    fill_in 'Email',  with: "e@mail.com"
     fill_in 'Password', with: "123456"
     click_button 'Log in'
   end
 
-  scenario "with existing id" do
+  scenario "when click on delete button" do
     post
 
     visit posts_path

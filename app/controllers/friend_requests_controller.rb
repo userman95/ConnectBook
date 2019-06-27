@@ -5,7 +5,7 @@ class FriendRequestsController < ApplicationController
     @user = User.find_by(id: params[:friend_id])
 
     if @friend_request.save
-      render format: :js
+      render formats: :js
     else
       flash[:danger] = 'Could not send the request'
       redirect_to users_path
@@ -20,7 +20,7 @@ class FriendRequestsController < ApplicationController
     @friend_request = FriendRequest.find_by(id: params[:id])
     @friend_request.destroy
 
-    render format: :js
+    render formats: :js
   end
 
 end
