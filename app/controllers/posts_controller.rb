@@ -14,7 +14,11 @@ class PostsController < ApplicationController
       flash[:danger] = "Post not created"
       @user = @post.user
       @posts = Post.all
-      render 'users/show'
+      if params[:checked_url].include?("users")
+        redirect_to user_path(@post.user)
+      else
+        redirect_to posts_path
+      end
     end
   end
 
