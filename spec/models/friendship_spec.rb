@@ -5,7 +5,7 @@ RSpec.describe Friendship, type: :model do
   let(:user){ create(:user, name: "Orestis",email: "o@mail.com") }
   let(:friend){ create(:user, name: "Efrain",email: "e@mail.com") }
   let(:friend_request){ create(:friend_request, user: user, friend: friend) }
-  let(:friendship){ build(:friendship, user: friend, friend: user) }
+  let(:friendship){ build(:friendship, user: user, friend: friend) }
 
   describe "validations" do
     let(:inverse_friendship){ build(:friendship, user: friend, friend: user) }
@@ -43,7 +43,8 @@ RSpec.describe Friendship, type: :model do
     end
 
     it "a friendship should be destroyed when requester is deleted" do
-      friendship
+      friend_request
+      friendship.save
       user.destroy
       expect(Friendship.find_by(id: friendship.id)).to be_nil
     end

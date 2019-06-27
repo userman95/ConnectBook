@@ -42,7 +42,8 @@ RSpec.describe User, type: :model do
       user.save
       friend.save
       user.friend_requests.create(friend: friend)
-      friend.active_friendships.create(friend: user)
+      friend.passive_friendships.create(user: user)
+
       expect(user.reload.requests.first).to be_nil
       expect(friend.reload.friends.first).to eq(user)
       expect(user.reload.friends.first).to eq(friend)
@@ -66,7 +67,7 @@ RSpec.describe User, type: :model do
       end
 
       future_friend = requested_users.first
-      expect(user.requests.size).to eq(10)
+      expect(user.reload.requests.size).to eq(10)
       expect(future_friend.reload.users_in_request.first).to eq(user)
       expect(user.reload.users_in_request.first).to eq(future_friend)
     end
@@ -76,15 +77,15 @@ RSpec.describe User, type: :model do
 
       requested_users.each do |requested_user|
         user.friend_requests.create(friend: requested_user)
-        requested_user.active_friendships.create(friend: user)
+        requested_user.passive_friendships.create(user: user)
       end
 
       friend = requested_users.first
 
       expect(user.reload.friends.size).to eq(10)
-      expect(user.requests.count).to eq(0)
-      expect(user.friends.first).to eq(friend)
-      expect(friend.friends.first).to eq(user)
+      expect(user.reload.requests.count).to eq(0)
+      expect(user.reload.friends.first).to eq(friend)
+      expect(friend.reload.friends.first).to eq(user)
     end
 
   end
