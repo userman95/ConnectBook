@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-4">
+    <div class="text-left suggested-users friend-requests" id="friend-request-<%= friend_request.id %>">
+        <%= image_tag friend_request.friend.image.thumb.url, size: "60x60",class: "user-image" if friend_request.friend.image? %>
+        <%= link_to friend_request.friend.name, friend_request.friend%>
+        <%= button_to "Accept", { action: "create", controller: 'friendships' }, params:{friend_id: friend_request.friend.id},class: "accept" %>
+        <%= button_to "Decline", friend_request_path(friend_request), method: :delete,remote: true,class: "decline"%>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <div class="related-friends">
+    </div>
+  </div>
+</div>

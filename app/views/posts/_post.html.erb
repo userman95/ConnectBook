@@ -1,0 +1,54 @@
+
+<div class="post-section" id="post-<%= post.id %>">
+  <div class="post-origin">
+    <%= image_tag post.user.image.thumb.url, size: "40x40",class: "user-image" if post.user.image? %>
+    <div class="user-post-information">
+      <%= link_to post.user.name, post.user %>
+      <br><small><%= time_ago_in_words(post.created_at) %> ago</small>
+    </div>
+    <% if current_user == post.user %>
+    <div class="dropdown" id="post-<%= post.id %>-dropdown">
+      <div id="post-<%= post.id %>-menu" style="display: none;">
+        <ul class="menu-custom" >
+          <li><%= link_to "Delete", post_path(post),
+            method: :delete, remote: true %></li>
+        </ul>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <p><%= post.content %></p>
+  <span class="content">
+    <%= image_tag post.picture.url,class: 'posted-image' if post.picture? %>
+  </span>
+  <div class="text-right likes-info-counters">
+    <span class="likes-image"></span>
+    <span class="likes-counter">
+      <small id="post-<%= post.id %>-likes"><%= post.likes.count %> </small>
+    </span>
+    <span class="comments-counter" id="post-<%= post.id %>-comments-count">
+      <small>
+        <%= pluralize(post.comments.count, "comment") %>
+      </small>
+    </span>
+  </div>
+  <div class="post-reactions" id="post-<%= post.id %>-attention" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-center like-display">
+          <%= render 'likes/button', resource: post %>
+          <%# render post.likes.where(user_id: current_user.id) %>
+        </div>
+        <div class="col-md-6 text-center comment-display">
+          <%= render 'comments/button', resource: post %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="list-group list-group-flush" id="post-<%= post.id %>-comments">
+    <%= render post.comments %>
+  </ul>
+  <div class="comment-form">
+    <%= render 'comments/form', resource: post %>
+  </div>
+</div>

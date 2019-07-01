@@ -1,24 +1,14 @@
-# README
+# Facebook Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project to create a Facebook clone with core functionalities
 
-Things you may want to cover:
+## Concepts Applied Here
 
-* Ruby version
+* Associations
+* Validations
+* CSS Styling
+* Routing
+* Gems' handling
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Database Diagram
+This is the diagram to show the associations between models: ![Database diagram](https://github.com/efrapp/facebook/blob/develop/public/facebook_db_diagram.png)

@@ -1,0 +1,3 @@
+$("#comment-<%= @comment.id %>-id").remove();
+$("#post-<%= @comment.post.id %>-comments-count")
+  .html("<small><%= pluralize(@post.comments.count, "comment") %></small>");

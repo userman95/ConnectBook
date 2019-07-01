@@ -1,0 +1,18 @@
+  <div class="col-md-3">
+    <%= render 'shared/available_friends' %>
+  </div>
+  <div class="col-md-4">
+    <div class="text-left">
+      <section class="post-creation">
+        <%= render 'shared/notificaton_messages' %>
+        <%= render 'shared/post_form', locals: {post: @post} %>
+      </section>
+      <section>
+        <%= render @posts %>
+      </section>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="related-friends">
+    </div>
+  </div>

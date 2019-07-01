@@ -1,0 +1,45 @@
+  <div class="col-md-3">
+    <%= render 'shared/available_friends' %>
+  </div>
+  <div class="col-md-6">
+    <div class="text-left">
+      <div class="profile-wall-images">
+        <% if !@user.wallpaper.present? %>
+          <div class="default-wallpaper">
+            <%= image_tag "wallpaper.png",size: "60" %>
+          </div>
+        <% else %>
+          <%= image_tag @user.wallpaper.large.url  %>
+        <% end %>
+        <%= image_tag @user.image.small.url, size: "120x120",class: "profile-image" if @user.image? %>
+        <%= link_to "edit credentials", edit_user_registration_path, class: "users-credentials"  if current_user == @user%>
+      </div>
+      <% if current_user == @user %>
+        <div class="row">
+          <div class="col-md-12 images-buttons">
+            <div class="profile-images-buttons">
+              <%= render 'shared/user_form' %>
+            </div>
+            <div class="profile-wallpaper-button">
+              <%= render 'shared/user_wallpaper_form' %>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <style>
+          .profile-wall-images{
+               margin-bottom: 25px;
+              }
+        </style>
+      <% end %>
+      <section class="post-creation">
+        <%= render 'shared/notificaton_messages' %>
+        <%= render 'shared/post_form' %>
+      </section>
+      <section>
+        <%= render @posts %>
+      </section>
+    </div>
+  </div>
+  <div class="col-md-3">
+  </div>

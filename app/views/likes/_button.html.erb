@@ -1,0 +1,9 @@
+<% if like = resource.likes.find_by(user_id: current_user.id) %>
+  <%= link_to "", [resource, like],
+    class: "likes", method: :delete, remote: true %>
+<% else %>
+  <%= form_with(model: [resource, Like.new]) do |f| %>
+    <%= f.hidden_field :post_id, value: resource.id %>
+    <%= f.submit "", class: "likes" %>
+  <% end %>
+<% end %>

@@ -1,0 +1,5 @@
+<%= form_for(@user, html: {class: "sample-form"}) do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: "file-profile-button" %>
+  <%= f.submit "Upload profile", class: "upload-prof-image" %>
+<% end %>

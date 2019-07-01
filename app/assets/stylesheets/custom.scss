@@ -1,0 +1,408 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body{
+  box-sizing: border-box;
+  background-color: #e9ebee;
+}
+.header-profile-image{
+  border-radius: 50%;
+}
+.suggested-users{
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 1px;
+  border: 1px solid #c2c4c7;
+}
+.suggested-friends-info{
+  display: flex;
+}
+.friend-requests{
+  display: flex;
+}
+.friend-requests a{
+  flex: 1;
+}
+.accept{
+  background-color: #4267b2;
+  color: white;
+  border: 1px inset #4267b2;
+  border-radius: 2px;
+}
+.decline{
+  background-color: #e9ebee;
+  border: 1px solid #c0c3c7;
+  border-radius: 2px;
+  margin-left: 3px;
+}
+.friend-style-addition{
+  margin-left: 5px;
+}
+.add-friend-button{
+  background-image: image-url("add.png");
+  background-color: #e9ebee;
+  border: 1px solid #c2c4c7;
+  color: black;
+  padding: 0 31px;
+  font-size: 13px;
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: 0;
+  border-radius: 10px;
+}
+.delete-friend-button{
+  background-color: #e9ebee;
+  border: 1px solid #c2c4c7;
+  color: black;
+  padding: 0 22px;
+  font-size: 13px;
+  border-radius: 10px;
+}
+.index-buttons{
+  margin-left: 25%;
+  background: #0093ffa6;
+  border: 1px solid black;
+  padding: 4px 18px;
+  margin-bottom: 6px;
+  color: white;
+}
+
+.position-of-pages{
+  margin-top: 50px;
+}
+
+.head {
+  background-color: #4267b2;
+}
+
+.navbar-link{
+  color: #ffffff;
+  font-family: initial;
+  font-weight: 600;
+  font-size: 14px;
+}
+.navbar-link:hover{
+  text-decoration: none;
+  color: #d5d5d5;
+}
+.navbar-text{
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+.form-control{
+  max-height: 23px;
+}
+.search-form{
+  width: 100%;
+}
+.not-info{
+  margin-top: 6px;
+  padding: 0;
+}
+.profile-options {
+    margin: 0 0 3px;
+}
+.notifications{
+  margin-left: 6px;
+}
+.friend_request{
+  background-image: image-url("facebook-pack.png");
+  background-size: 109px;
+  background-position: 32px;
+  height: 28px;
+  width: 28px;
+}
+.message{
+  background-image: image-url("facebook-pack.png");
+  background-size: 73px;
+  background-position: -47px -43px;
+  height: 28px;
+  width: 28px;
+}
+.notification{
+  background-image: image-url("facebook-pack.png");
+  background-size: 72px;
+  background-position: 72px;
+  height: 28px;
+  width: 28px;
+}
+.helper-links{
+  float: right;
+}
+.helper-links-second{
+  clear: both;
+  float: right;
+  background-image: image-url("friends.png");
+  display: block;
+  padding-left: 34px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: -4px;
+}
+.logo{
+  right: -8px;
+  position: absolute;
+  margin-top: 4px;
+}
+#Logout{
+  display: inline-block;
+  margin-top: 4px;
+}
+.navbar{
+  min-height: 42px;
+}
+/* POSTS STYLES */
+.user-post-information{
+  margin-left: 6px;
+}
+.user-image{
+  border-radius: 50%;
+}
+.posted-image{
+  width: 100%;
+}
+.field textarea{
+  min-width: 100%;
+  outline: none;
+  resize: none;
+  overflow: auto;
+  rows: 5;
+}
+.file-button{
+  color: transparent;
+  width: 120px;
+}
+.picture{
+  float: left;
+}
+input[type="file"]:before {
+  border: none;
+}
+.post-button{
+  float: right;
+}
+.likes-info-counters{
+  border-top: 1px solid #e9ebee;
+}
+.post-creation{
+  margin-bottom: 46px;
+}
+.post-section{
+  min-width: 265px;
+  margin: 13px 0px;
+  padding: 12px;
+  background-color: white;
+}
+.post-origin{
+  width: 100%;
+  display: flex;
+  margin-bottom: 10px;
+}
+.post-attention{
+  width: 100%;
+}
+.post-reactions{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+  border-top: 1px solid #e9ebee;
+  padding-top: 2px;
+}
+.post-reactions span{
+  display: block;
+}
+.friends-link-icon{
+}
+//Like button style
+//Comment input STYLES
+.comment-button{
+  background-image: url(/assets/comment.png);
+  display: block;
+  background-size: 22px;
+  width: 100%;
+  background-position: center 2px;
+  height: 29px;
+  background-repeat: no-repeat;
+  text-align: right;
+  line-height: 30px;
+  color: slategrey;
+}
+.comment-button:hover{
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, .05);
+}
+.comment-list{
+  display: none;
+}
+.comment-input{
+  border: 1px solid #ccd0d5;
+  border-radius: 15px;
+  background-color: #f2f3f5;
+  width: 100%;
+  padding-left: 7px;
+  font-size: 13px;
+}
+.list-comment-item{
+  word-wrap: break-word;
+  border: 1px solid #ccd0d5;
+  border-radius: 15px;
+  background-color: #f2f3f5;
+  width: 100%;
+  padding: 5px 4px;
+  font-size: 13px;
+  margin: 3px;
+}
+.list-group{
+  padding-left: 0px;
+  padding-right: 2px;
+  margin-bottom: 0;
+  list-style: none;
+}
+.comment-delete-link{
+  display: inline-block;
+  float: right;
+}
+input:focus{
+  outline: none;
+}
+.likes{
+  background-image: url(/assets/reaction-buttons.jpg);
+  width: 100%;
+  background-size: 46px;
+  height: 29px;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center -10px;
+  background-color: transparent;
+  border: none;
+}
+.likes:hover{
+  background-color: rgba(0, 0, 0, .05);
+}
+.comment-display{
+  padding: 0;
+}
+.like-display{
+  padding: 0;
+}
+.likes-image{
+  background-image: url(/assets/reaction_buttons.png);
+  width: 20px;
+  height: 20px;
+  float: left;
+  display: inline-block;
+  background-position-y: 20px;
+  background-size: 97px;
+  background-position-x: 2px;
+  margin-right: 3px;
+}
+.likes-counter{
+  float: left;
+}
+//USER PROFILE STYLES
+.profile-image{
+  border-radius: 50%;
+  border: 4px outset white;
+  border-style: solid inset solid solid;
+  position: absolute;
+  top: 5px;
+  left: 35px;
+}
+.profile-wall-images{
+  text-align: center;
+  height: 160px;
+}
+.file-profile-button{
+  width: 120px;
+  margin-right: 3px;
+}
+.upload-prof-image{
+  padding: 1px;
+  height: 22px;
+  font-size: 13px;
+  background-color: cornflowerblue;
+  border: 1px solid grey;
+  color: white;
+  border-radius: 5px;
+}
+.sample-form{
+  display: flex;
+}
+.dropdown {
+  margin-left: auto;
+  cursor: pointer;
+}
+.dropdown:after {
+content: '\2807';
+font-size: 24px;
+}
+.menu-custom{
+  position: absolute;
+  top: 60%;
+  right: 13px;
+  z-index: 1000;
+  display: block;
+  float: left;
+  min-width: 93px;
+  padding: 5px 0;
+  font-size: 11px;
+  text-align: center;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  border-top-right-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+.menu-custom li a {
+  display: block;
+}
+.friend_request_notif{
+  position: absolute;
+}
+.friend-request-count{
+  position: absolute;
+  border: 1px solid red;
+  background: red;
+  border-radius: 50%;
+  width: fit-content;
+  min-width: 14px;
+  left: 16px;
+  height: 15px;
+  color: white;
+  font-size: 11px;
+  text-align: center;
+}
+.default-wallpaper{
+  padding: 50px 0;
+}
+.users-credentials{
+  position: absolute;
+  left: 37px;
+  top: 132px;
+  border-radius: 7px;
+  width: 117px;
+  color: white;
+  background: #c9c5c5;
+  display: block;
+}
+.images-buttons{
+  display: flex;
+  justify-content: space-between;
+  margin: 3px 0 22px 0;
+}
+@media (max-width: 1199px){
+  .profile-wallpaper-button {
+    float: left;
+    padding-bottom: 10px;
+  }
+  .profile-images-buttons {
+    padding-bottom: 4px;
+  }
+}

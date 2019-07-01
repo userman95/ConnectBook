@@ -1,0 +1,2 @@
+<% @friend = User.find_by(id: params[:id]) %>
+$('#friendship-<%= @friend.id %>').remove();

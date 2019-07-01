@@ -1,0 +1,55 @@
+<header class="navbar navbar-fixed-top head">
+  <div class="container post-container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="text-right navbar-text navbar-right">
+           <%=link_to image_tag("fb-logo.png",size: 24,class: 'navbar-link logo'),users_path %>
+        </div>
+      </div>
+      <div class="col-md-5 navbar-text">
+        <%= render 'shared/search_form' %>
+      </div>
+
+      <div class="col-md-4 navbar-text not-info">
+          <div class="navbar-nav">
+            <p class="profile-options">
+              <% if user_signed_in? %>
+                <% if current_user.image? %>
+                <%= image_tag current_user.image.thumb.url,size: '30x30',class: 'header-profile-image'  %>&nbsp;
+                <% else %>
+                <style>
+                  .profile-options{
+                      margin: 5px 0px;
+                   }
+                </style>
+                <% end %>
+                <%= link_to current_user.first_name, user_path(current_user), :class => 'navbar-link' %>&nbsp;
+                <%= link_to "Start page", posts_path, :class => 'navbar-link'  %>&nbsp;
+              <% else %>
+                <style>
+                  .profile-options{
+                      margin: 5px 0px;
+                   }
+                </style>
+                <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %>&nbsp;
+                <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>&nbsp;
+              <% end %>
+            </p>
+          </div>
+          <div class="navbar-nav notifications ">
+            <% if current_user && current_user.friend_requests.any? %>
+                <div class="friend_request_notif">
+                  <small class="friend-request-count"><%= current_user.friend_requests.count %></small>
+                </div>
+            <% end %>
+              <%= link_to "",friend_requests_path,class: "friend_request navbar-nav" %>
+              <%= link_to "",users_path,class: "message navbar-nav" %>
+              <%= link_to "",users_path,class: "notification navbar-nav" %>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link',id: "Logout"  %>
+          </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="position-of-pages">
+</div>

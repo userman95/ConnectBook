@@ -1,0 +1,6 @@
+<% unless @comment.errors.any? %>
+  $("#post-<%= @post.id %>-comments").append('<%= j(render @comment) %>');
+  $("#post-<%= @post.id %>-comment-input")[0].reset();
+  $("#post-<%= @post.id %>-comments-count")
+    .html("<small><%= pluralize(@post.comments.count, "comment") %></small>");
+<% end %>

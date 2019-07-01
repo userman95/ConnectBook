@@ -1,0 +1,3 @@
+$("#post-<%= @post.id %>-attention .like-display")
+  .html("<%= j(render('likes/button', resource: @like.post)) %>");
+$("#post-<%= @post.id %>-likes").html("<%= @post.likes.count %>");
