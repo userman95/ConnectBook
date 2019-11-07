@@ -71,3 +71,6 @@ You can deploy the project on Heroku using the following steps:
 ## Database Diagram
 This is the diagram to show the associations between models: ![Database diagram](https://github.com/efrapp/facebook/blob/develop/public/facebook_db_diagram.png)
 
+## Screenshots
+
+ ![screenshot](https://github.com/userman95/facebook/blob/master/screensgots.png)
