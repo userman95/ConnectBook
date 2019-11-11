@@ -6,6 +6,10 @@ ConnectBook is a project based in facebook. It has a features of the original ap
 * Upload profile and wallpaper photos
 * Add, delete, search friends
 
+## Screenshots
+
+ ![screenshot](https://github.com/userman95/facebook/blob/master/screensgots.png)
+ 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -70,7 +74,3 @@ You can deploy the project on Heroku using the following steps:
 
 ## Database Diagram
 This is the diagram to show the associations between models: ![Database diagram](https://github.com/efrapp/facebook/blob/develop/public/facebook_db_diagram.png)
-
-## Screenshots
-
- ![screenshot](https://github.com/userman95/facebook/blob/master/screensgots.png)
