@@ -67,6 +67,12 @@ You can deploy the project on Heroku using the following steps:
 * Javascript
 * Ruby On Rails
 
+## Possible optimization
+
+* Chat service (with client or server side logic)
+* Share posts
+* Add maps and other functionalities
+
 ## Authors
 
 * [Orestis Kaplanis](https://github.com/userman95)
