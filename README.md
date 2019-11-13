@@ -6,6 +6,8 @@ ConnectBook is a project based in facebook. It has a features of the original ap
 * Upload profile and wallpaper photos
 * Add, delete, search friends
 
+using Ruby on Rails
+
 ## Screenshots
 
  ![screenshot](https://github.com/userman95/facebook/blob/master/screensgots.png)
