@@ -1,12 +1,12 @@
 # ConnectBook
 
-ConnectBook is a project based in facebook. It has a features of the original app such as: 
+ConnectBook is a project based in facebook. It has features of the original app such as: 
 * Upload posts including photos
 * Comment and like a post
 * Upload profile and wallpaper photos
 * Add, delete, search friends
 
-using Ruby on Rails
+built with Ruby on Rails
 
 ## Screenshots
 
